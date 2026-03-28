@@ -1,0 +1,10 @@
+9. Context Engineering - zaawansowane zarządzanie kontekstem
+
+Implementacja i ewaluacja technik zaawansowanego zarządzania kontekstem (context engineering) w systemach agentowych/RAG.
+
+Zadania:
+- Zbadać i zaimplementować system konwersacyjny (np. czat) obsługujący zarządzanie długim kontekstem (np. kilkunasto/kilkudziesięcio stronicowe dokumenty, >10 tys. tokenów per dokument) z wybranymi technikami np. semantic chunking, document structure-based chunking w wybranej dziedzinie (np. inżynieria, IT, programowanie itp.)
+- Zaimplementować wybraną metodę query understanding np. query rewriter
+- Porównać co najmniej 2 strategie context engineering np. context compression/summarizing, hierarchical summarization
+- Zbadanie oraz zaimplementowanie wybranej metody context cache/semantic cache
+- Zbadanie problemu "Lost-in-the-middle" i sposobów jego mitygacji
