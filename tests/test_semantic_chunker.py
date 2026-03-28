@@ -15,7 +15,10 @@ from ingestion.chunkers.semantic_chunker import SemanticDocChunker
 logger = logging.getLogger(__name__)
 
 logger.info("Loading embedding model (first run will download ~1.2GB)...")
-embeddings = HuggingFaceEmbeddings(model_name="intfloat/multilingual-e5-large", show_progress=True)
+embeddings = HuggingFaceEmbeddings(
+    # model_name="intfloat/multilingual-e5-large", 
+    model_name="paraphrase-multilingual-mpnet-base-v2", 
+    show_progress=True)
 
 docs = load_pdfs()
 docs = clean_documents(docs)

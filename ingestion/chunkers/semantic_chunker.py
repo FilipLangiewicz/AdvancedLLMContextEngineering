@@ -8,6 +8,8 @@ from ingestion.chunkers.base_chunker import BaseChunker
 
 logger = logging.getLogger(__name__)
 
+MIN_CHUNK_LENGTH = 100
+
 
 class SemanticDocChunker(BaseChunker):
 
@@ -26,6 +28,7 @@ class SemanticDocChunker(BaseChunker):
                     texts=[doc.page_content],
                     metadatas=[doc.metadata],
                 )
+                sub_docs = self._filter_short_chunks(sub_docs)
                 for idx, chunk in enumerate(sub_docs):
                     chunk.metadata["chunk_type"] = "semantic"
                     chunk.metadata["chunk_index"] = idx
@@ -39,3 +42,14 @@ class SemanticDocChunker(BaseChunker):
 
         logger.info(f"[SemanticChunker] {len(documents)} pages → {len(all_chunks)} chunks")
         return all_chunks
+    
+    @staticmethod
+    def _filter_short_chunks(chunks: List[Document]) -> List[Document]:
+        filtered = []
+        for chunk in chunks:
+            text = chunk.page_content.strip()
+            if len(text) < MIN_CHUNK_LENGTH and filtered:
+                filtered[-1].page_content += " " + text
+            else:
+                filtered.append(chunk)
+        return filtered
