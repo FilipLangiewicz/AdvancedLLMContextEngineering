@@ -7,3 +7,5 @@ qdrant-client>=1.9
 pypdf>=4.0
 pydantic-settings>=2.0
 python-dotenv>=1.0
+sentence-transformers>=3.0
+langchain-huggingface>=0.1
