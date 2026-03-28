@@ -27,18 +27,7 @@ docs = [d for d in docs if d.metadata['source'] == 'document2.pdf']
 print(f"Testing on {len(docs)} pages")
 
 chunker = SemanticDocChunker(embeddings=embeddings)
-all_chunks = []
-for doc in tqdm(docs, desc="Semantic chunking"):
-    result = chunker._splitter.create_documents(
-        texts=[doc.page_content],
-        metadatas=[doc.metadata],
-    )
-    for idx, chunk in enumerate(result):
-        chunk.metadata["chunk_type"] = "semantic"
-        chunk.metadata["chunk_index"] = idx
-        chunk.metadata["chunking_strategy"] = "semantic"
-    all_chunks.extend(result)
-chunks = all_chunks
+chunks = chunker.chunk(docs)
 
 # --- Summary ---
 print(f"\nTotal chunks: {len(chunks)}")
@@ -83,6 +72,7 @@ for source, source_chunks in chunks_by_source.items():
 # --- Preview first chunk ---
 print(f"\n--- First chunk preview ---")
 c = chunks[0]
+# print(f"Metadata keys: {c.metadata}")  
 print(f"Source: {c.metadata['source']}")
 print(f"Page: {c.metadata['page']}")
 print(f"Type: {c.metadata['chunk_type']}")

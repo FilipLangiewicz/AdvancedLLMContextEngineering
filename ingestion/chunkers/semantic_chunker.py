@@ -32,6 +32,7 @@ class SemanticDocChunker(BaseChunker):
                 )
                 sub_docs = self._filter_short_chunks(sub_docs)
                 for idx, chunk in enumerate(sub_docs):
+                    chunk.metadata.update(base_metadata)
                     chunk.metadata["chunk_type"] = "semantic"
                     chunk.metadata["chunk_index"] = idx
                     chunk.metadata["chunking_strategy"] = "semantic"
@@ -62,7 +63,7 @@ class SemanticDocChunker(BaseChunker):
         full_text = "\n".join(doc.page_content for doc in sorted_docs)
         base_metadata = {
             k: v for k, v in sorted_docs[0].metadata.items()
-            if k not in ("page", "page_label")
+            if k not in ("page_label",)
         }
         return full_text, base_metadata
     
