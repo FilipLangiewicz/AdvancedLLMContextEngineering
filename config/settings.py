@@ -33,6 +33,8 @@ class Settings(BaseSettings):
     qdrant_api_key: str
     qdrant_collection_structure: str = "legal_docs_structure"
     qdrant_collection_semantic: str = "legal_docs_semantic"
+    qdrant_collection_structure_test: str = "legal_docs_structure_test"
+    qdrant_collection_semantic_test: str = "legal_docs_semantic_test"
 
     # API Keys
     openai_api_key: str = ""
