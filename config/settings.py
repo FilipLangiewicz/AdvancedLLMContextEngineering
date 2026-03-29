@@ -16,9 +16,14 @@ class LLMProvider(str, Enum):
 
 class Settings(BaseSettings):
     # LLM
-    llm_provider: LLMProvider = LLMProvider.GOOGLE
-    llm_model: str = "gemini-2.0-flash"
+    llm_provider: LLMProvider = LLMProvider.GROQ
     llm_temperature: float = 0.0
+    
+    # Models per provider
+    groq_model: str
+    google_model: str
+    openai_model: str
+    anthropic_model: str
 
     # Embeddings
     embedding_model: str = "text-embedding-3-small"

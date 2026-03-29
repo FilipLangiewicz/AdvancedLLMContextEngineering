@@ -7,7 +7,22 @@ logging.basicConfig(level=logging.INFO)
 from langchain_huggingface import HuggingFaceEmbeddings
 from retrieval.retriever import Retriever
 from generation.generator import Generator
-from config.settings import ChunkingStrategy
+from generation.llm_factory import _LLM_REGISTRY, _DEFAULT_MODELS
+from config.settings import ChunkingStrategy, LLMProvider
+
+# ── FACTORY VERIFICATION ─────────────────────────────────────
+print("\n=== REGISTRY CHECK ===")
+for provider in LLMProvider:
+    status = "OK" if provider in _LLM_REGISTRY else "MISSING IN REGISTRY"
+    model = _DEFAULT_MODELS.get(provider, "?")
+    print(f"  {provider.value:<12} -> {model:<35} [{status}]")
+
+print("\n=== PROVIDER OVERRIDE TEST ===")
+gen_groq = Generator(provider=LLMProvider.GROQ)
+gen_groq_small = Generator(provider=LLMProvider.GROQ, model="llama-3.1-8b-instant")
+print("  OK - Generator(provider=GROQ)")
+print("  OK - Generator(provider=GROQ, model='llama-3.1-8b-instant')")
+# ─────────────────────────────────────────────────────────────
 
 embeddings = HuggingFaceEmbeddings(model_name="paraphrase-multilingual-mpnet-base-v2")
 generator = Generator()
