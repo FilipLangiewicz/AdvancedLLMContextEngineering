@@ -11,12 +11,13 @@ class LLMProvider(str, Enum):
     OPENAI = "openai"
     ANTHROPIC = "anthropic"
     GOOGLE = "google"
+    GROQ = "groq"
 
 
 class Settings(BaseSettings):
     # LLM
-    llm_provider: LLMProvider = LLMProvider.OPENAI
-    llm_model: str = "gpt-4o"
+    llm_provider: LLMProvider = LLMProvider.GOOGLE
+    llm_model: str = "gemini-2.0-flash"
     llm_temperature: float = 0.0
 
     # Embeddings
@@ -40,6 +41,7 @@ class Settings(BaseSettings):
     openai_api_key: str = ""
     anthropic_api_key: str = ""
     google_api_key: str = ""
+    groq_api_key: str = ""
 
     class Config:
         env_file = ".env"
