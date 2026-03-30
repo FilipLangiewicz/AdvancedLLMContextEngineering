@@ -1,6 +1,8 @@
 from pydantic_settings import BaseSettings
 from enum import Enum
 from compression.base import CompressionStrategy
+from query.base import QueryUnderstandingStrategy
+from reranking.base import RerankingStrategy
 
 
 class ChunkingStrategy(str, Enum):
@@ -37,6 +39,12 @@ class Settings(BaseSettings):
     
     # Compression
     compression_strategy: CompressionStrategy | None = None
+    
+    # Query Understanding
+    query_understanding_strategy: QueryUnderstandingStrategy | None = QueryUnderstandingStrategy.REWRITING
+    
+    # Reranking
+    reranking_strategy: RerankingStrategy = RerankingStrategy.ORIGINAL_ORDER
 
     # Qdrant
     qdrant_url: str
