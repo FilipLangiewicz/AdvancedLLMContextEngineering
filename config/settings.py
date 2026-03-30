@@ -1,5 +1,6 @@
 from pydantic_settings import BaseSettings
 from enum import Enum
+from compression.base import CompressionStrategy
 
 
 class ChunkingStrategy(str, Enum):
@@ -33,6 +34,9 @@ class Settings(BaseSettings):
     chunk_size: int = 1000
     chunk_overlap: int = 150
     pdf_dir: str = "data/pdf"
+    
+    # Compression
+    compression_strategy: CompressionStrategy | None = None
 
     # Qdrant
     qdrant_url: str

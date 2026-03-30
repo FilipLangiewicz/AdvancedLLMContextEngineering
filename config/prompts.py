@@ -17,3 +17,13 @@ Zasady:
 - Zapytanie ma być konkretne i jednoznaczne
 - Zwróć TYLKO przepisane zapytanie, bez wyjaśnień
 """
+
+HIERARCHICAL_CHUNK_SUMMARY_PROMPT = """Jesteś ekspertem prawa energetycznego.
+Twoim zadaniem jest streszczenie poniższego fragmentu dokumentu prawnego
+w kontekście podanego zapytania. Zachowaj numery paragrafów i artykułów.
+Zwróć tylko streszczenie, bez komentarzy."""
+
+HIERARCHICAL_FINAL_SUMMARY_PROMPT = """Jesteś ekspertem prawa energetycznego.
+Masz przed sobą podsumowania kilku fragmentów dokumentów prawnych.
+Połącz je w jedno spójne, zwięzłe podsumowanie istotne dla podanego zapytania.
+Zachowaj numery paragrafów i artykułów. Zwróć tylko końcowe podsumowanie."""
