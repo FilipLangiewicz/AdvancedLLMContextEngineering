@@ -1,0 +1,129 @@
+
+=======================================================
+  TestBasicPipeline
+=======================================================
+
+  [test_default_pipeline_returns_answer]
+Loading weights:   0%|                                                             | 0/199 [00:00<?, ?it/s]Loading weights: 100%|#################################################| 199/199 [00:00<00:00, 3771.82it/s]
+    Query:    Jakie są stawki opłat za ciepło?
+    Answer:   Stawki opłat za ciepło są określone w § 21 ust. 3 i § 33. 
+
+Stawki opłaty miesięcznej i sezonowej dla danego rodzaju lok...
+    Sources:  5 docs
+    Strategy: query_transform=QueryRewriter | reranking=OriginalOrderReranker | compression=none
+  --> PASS
+
+  [test_pipeline_reusable_multiple_queries]
+Loading weights:   0%|                                                             | 0/199 [00:00<?, ?it/s]Loading weights: 100%|#################################################| 199/199 [00:00<00:00, 3823.19it/s]
+    Query 1 answer length: 713
+    Query 2 answer length: 805
+    Query 3 answer length: 43
+  --> PASS
+
+  [test_response_contains_sources_metadata]
+Loading weights:   0%|                                                             | 0/199 [00:00<?, ?it/s]Loading weights: 100%|#################################################| 199/199 [00:00<00:00, 3795.25it/s]
+    Source: {'source': 'document2.pdf', 'page': 9, 'article_id': '§ 21.', 'chapter': 'Rozdział 3 \nSzczegółowe zasady kalkulacji cen i stawek opłat', 'chunking_strategy': 'structure'}
+    Source: {'source': 'document2.pdf', 'page': 16, 'article_id': '§ 34.', 'chapter': 'Rozdział 4 \nSzczegółowe zasady rozliczeń z tytułu zaopatrzenia w ciepło', 'chunking_strategy': 'structure'}
+    Source: {'source': 'document2.pdf', 'page': 16, 'article_id': '§ 33.', 'chapter': 'Rozdział 4 \nSzczegółowe zasady rozliczeń z tytułu zaopatrzenia w ciepło', 'chunking_strategy': 'structure'}
+    Source: {'source': 'document2.pdf', 'page': 15, 'article_id': '§ 31.', 'chapter': 'Rozdział 4 \nSzczegółowe zasady rozliczeń z tytułu zaopatrzenia w ciepło', 'chunking_strategy': 'structure'}
+    Source: {'source': 'document2.pdf', 'page': 16, 'article_id': '§ 33.', 'chapter': 'Rozdział 4 \nSzczegółowe zasady rozliczeń z tytułu zaopatrzenia w ciepło', 'chunking_strategy': 'structure'}
+  --> PASS
+
+=======================================================
+  TestPipelineStrategies
+=======================================================
+
+  [test_all_strategies_combined]
+Loading weights:   0%|                                                             | 0/199 [00:00<?, ?it/s]Loading weights: 100%|#################################################| 199/199 [00:00<00:00, 4421.96it/s]
+    Answer: Stawki opłat za ciepło są następujące: 
+- opłata miesięczna i sezonowa, 
+- opłata stała za usługi przesyłowe, 
+- opłata ...
+    Strategy: query_transform=QueryRewriter | reranking=UShapeReranker | compression=HierarchicalSummaryCompressor
+  --> PASS
+
+  [test_extractive_compression]
+Loading weights:   0%|                                                             | 0/199 [00:00<?, ?it/s]Loading weights: 100%|#################################################| 199/199 [00:00<00:00, 4294.74it/s]
+    Answer: Nie znalazłem w dokumentach informacji o konkretnych stawkach opłat za ciepło. Dokumenty zawierają informacje o sposobie...
+    Strategy: query_transform=QueryRewriter | reranking=OriginalOrderReranker | compression=ExtractiveFilterCompressor
+  --> PASS
+
+  [test_hierarchical_compression]
+Loading weights:   0%|                                                             | 0/199 [00:00<?, ?it/s]Loading weights: 100%|#################################################| 199/199 [00:00<00:00, 4441.35it/s]
+    Answer: Stawki opłat za ciepło obejmują: 
+- opłatę stałą za usługi przesyłowe, 
+- opłatę zmienną za usługi przesyłowe, 
+- miesię...
+    Strategy: query_transform=QueryRewriter | reranking=OriginalOrderReranker | compression=HierarchicalSummaryCompressor
+  --> PASS
+
+  [test_query_rewriting]
+Loading weights:   0%|                                                             | 0/199 [00:00<?, ?it/s]Loading weights: 100%|#################################################| 199/199 [00:00<00:00, 4095.42it/s]
+    Original: 'ile kosztuje ciepło?'
+    Answer: Nie znalazłem informacji o konkretnych kosztach ciepła w dostarczonych dokumentach. Dokumenty zawierają informacje o spo...
+    Strategy: query_transform=QueryRewriter | reranking=OriginalOrderReranker | compression=none
+  --> PASS
+
+  [test_u_shape_reranking]
+Loading weights:   0%|                                                             | 0/199 [00:00<?, ?it/s]Loading weights: 100%|#################################################| 199/199 [00:00<00:00, 4115.23it/s]
+    Answer: Stawki opłat za ciepło są określone w § 21, § 33 i § 34 dokumentu. 
+
+Stawki opłat za ciepło są następujące:
+- stawka opł...
+    Strategy: query_transform=QueryRewriter | reranking=UShapeReranker | compression=none
+  --> PASS
+
+=======================================================
+  TestSemanticCache
+=======================================================
+
+  [test_cache_hit_on_repeated_query]
+Loading weights:   0%|                                                             | 0/199 [00:00<?, ?it/s]Loading weights: 100%|#################################################| 199/199 [00:00<00:00, 4319.62it/s]
+    First call  — strategy: query_transform=QueryRewriter | reranking=OriginalOrderReranker | compression=none
+    Second call — strategy: query_transform=QueryRewriter | reranking=OriginalOrderReranker | compression=none [CACHED]
+  --> PASS
+
+  [test_cache_hit_on_semantically_similar_query]
+Loading weights:   0%|                                                             | 0/199 [00:00<?, ?it/s]Loading weights: 100%|#################################################| 199/199 [00:00<00:00, 4052.49it/s]
+    Original:  'Jakie są stawki opłat za ciepło?'
+    Similar:   'Ile wynoszą opłaty za energię cieplną?'
+    Cache hit: False
+    Strategy:  query_transform=QueryRewriter | reranking=OriginalOrderReranker | compression=none
+  --> PASS
+
+  [test_cache_miss_on_different_query]
+Loading weights:   0%|                                                             | 0/199 [00:00<?, ?it/s]Loading weights: 100%|#################################################| 199/199 [00:00<00:00, 4189.34it/s]
+    Cache miss expected — strategy: query_transform=QueryRewriter | reranking=OriginalOrderReranker | compression=none
+  --> PASS
+
+=======================================================
+  TestEdgeCases
+=======================================================
+
+  [test_pipeline_without_cache]
+Loading weights:   0%|                                                             | 0/199 [00:00<?, ?it/s]Loading weights: 100%|#################################################| 199/199 [00:00<00:00, 4324.63it/s]
+    Both calls processed without cache as expected
+  --> PASS
+
+  [test_source_filter]
+Loading weights:   0%|                                                             | 0/199 [00:00<?, ?it/s]Loading weights: 100%|#################################################| 199/199 [00:00<00:00, 4288.28it/s]
+    Source filter: 'document1.pdf'
+    Sources returned: [{'source': 'document1.pdf', 'page': 14, 'article_id': 'Art. 15.', 'chapter': 'Rozdział 4 \nZasady realizacji obowiązku uzyskania oszczędności energii', 'chunking_strategy': 'structure'}, {'source': 'document1.pdf', 'page': 12, 'article_id': 'Art. 14.', 'chapter': 'Rozdział 4 \nZasady realizacji obowiązku uzyskania oszczędności energii', 'chunking_strategy': 'structure'}, {'source': 'document1.pdf', 'page': 14, 'article_id': 'Art. 15.', 'chapter': 'Rozdział 4 \nZasady realizacji obowiązku uzyskania oszczędności energii', 'chunking_strategy': 'structure'}, {'source': 'document1.pdf', 'page': 1, 'article_id': 'Art. 2.', 'chapter': 'Rozdział 1 \nPrzepisy ogólne', 'chunking_strategy': 'structure'}, {'source': 'document1.pdf', 'page': 5, 'article_id': 'Art. 8.', 'chapter': 'Rozdział 3 \nZadania jednostek sektora publicznego w zakresie efektywności energetycznej', 'chunking_strategy': 'structure'}]
+  --> PASS
+
+  [test_very_long_query]
+Loading weights:   0%|                                                             | 0/199 [00:00<?, ?it/s]Loading weights: 100%|#################################################| 199/199 [00:00<00:00, 4300.90it/s]
+    Long query handled | answer length: 1242
+  --> PASS
+
+  [test_very_short_query]
+Loading weights:   0%|                                                             | 0/199 [00:00<?, ?it/s]Loading weights: 100%|#################################################| 199/199 [00:00<00:00, 4533.03it/s]
+    Query: 'cena'
+    Answer: Cena ciepła jest określona w dokumentach w następujący sposób:
+
+- W przypadku ciepła wytworzonego w instalacjach termicz...
+  --> PASS
+
+=======================================================
+  Results: 15 passed, 0 failed
+=======================================================

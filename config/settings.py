@@ -29,13 +29,16 @@ class Settings(BaseSettings):
     anthropic_model: str
 
     # Embeddings
-    embedding_model: str = "text-embedding-3-small"
+    embedding_model: str = "paraphrase-multilingual-mpnet-base-v2"
 
     # Ingestion
     chunking_strategy: ChunkingStrategy = ChunkingStrategy.STRUCTURE
     chunk_size: int = 1000
     chunk_overlap: int = 150
     pdf_dir: str = "data/pdf"
+    
+    # Retrieval
+    retrieval_k: int = 5
     
     # Compression
     compression_strategy: CompressionStrategy | None = None
@@ -46,6 +49,9 @@ class Settings(BaseSettings):
     # Reranking
     reranking_strategy: RerankingStrategy = RerankingStrategy.ORIGINAL_ORDER
 
+    # Semantic cache
+    cache_threshold: float = 0.92
+    
     # Qdrant
     qdrant_url: str
     qdrant_api_key: str
