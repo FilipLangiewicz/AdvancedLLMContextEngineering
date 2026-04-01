@@ -56,6 +56,7 @@ Modułowy system RAG dla domeny prawa energetycznego. Cel: porównanie technik c
 
 ### 1. Dane i źródła danych
 Dokumenty PDF umieszczone lokalnie w katalogu `data` (`document1.pdf`, `document2.pdf`, `document3.pdf`). Zakres: akty i regulacje prawne dotyczące sektora energetycznego.
+
 - **Dokument 1:** Ustawa z dnia 20 maja 2016 r. o efektywności energetycznej (33 strony),
 - **Dokument 2:** Rozporządzenie Ministra Klimatu z dnia 7 kwietnia 2020 r. w sprawie szczegółowych zasad kształtowania i kalkulacji taryf oraz rozliczeń z tytułu zaopatrzenia w ciepło (23 strony),
 - **Dokument 3:** Ustawa z dnia 10 kwietnia 1997 r., Prawo energetyczne (428 stron). 
