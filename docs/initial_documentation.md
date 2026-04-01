@@ -52,10 +52,48 @@ Nelson F. Liu i in. (2023) wykazują, że modele językowe mają trudności z wy
 
 
 ## Opis rozwiązania
-TODO: w jednym z podpunktów napisać jakie dokładnie dane bierzemy i skąd je mamy 
+Modułowy system RAG dla domeny prawa energetycznego. Cel: porównanie technik context engineering w jednolitych warunkach eksperymentalnych.
+
+### 1. Dane i źródła danych
+Dokumenty PDF umieszczone lokalnie w katalogu `data` (`document1.pdf`, `document2.pdf`, `document3.pdf`). Zakres: akty i regulacje prawne dotyczące sektora energetycznego.
+- **Dokument 1:** Ustawa z dnia 20 maja 2016 r. o efektywności energetycznej (33 strony),
+- **Dokument 2:** Rozporządzenie Ministra Klimatu z dnia 7 kwietnia 2020 r. w sprawie szczegółowych zasad kształtowania i kalkulacji taryf oraz rozliczeń z tytułu zaopatrzenia w ciepło (23 strony),
+- **Dokument 3:** Ustawa z dnia 10 kwietnia 1997 r., Prawo energetyczne (428 stron). 
+
+### 2. Pipeline przetwarzania dokumentów
+- Pipeline przetwarzania: wczytanie PDF, czyszczenie tekstu, chunking, generacja embeddingów, zapis do bazy wektorowej.
+- Dwie strategie podziału dokumentów: chunking strukturalny (rozdział/art./§) oraz semantic chunking (podobieństwo semantyczne).
+- Dwie równoległe bazy wektorowe jako podstawa porównań wpływu chunkingu na jakość odpowiedzi.
+
+### 3. Pipeline RAG
+- Sekwencja przetwarzania zapytania: query understanding -> retrieval -> reranking -> context compression -> generation.
+- Moduł query understanding: porównanie wariantu bazowego z query rewriting.
+- Moduł rerankingu: wariant bazowy vs. U-shape reorder jako mechanizm mitygacji lost-in-the-middle.
+- Moduł kompresji kontekstu: ekstrakcyjne filtrowanie treści oraz hierarchiczne podsumowywanie.
+- Semantic cache: obsługa powtarzalnych i semantycznie podobnych zapytań; redukcja opóźnień odpowiedzi i kosztu obliczeń.
+
+### 4. Aplikacja Streamlit
+- Aplikacja webowa Streamlit z interfejsem czatu do konwersacji z systemem.
+- Konfigurowalność eksperymentu z poziomu UI: wybór modelu LLM, strategii chunkingu, metody query understanding, wariantu rerankingu i kompresji kontekstu.
+- Prezentacja odpowiedzi wraz ze źródłami i metadanymi dokumentów.
+
+### 5. Plan eksperymentów i ewaluacji
+- Seria eksperymentów porównawczych dla wielu konfiguracji metod context engineering.
+- Kryteria oceny: trafność, kompletność, odporność na lost-in-the-middle, czas odpowiedzi, koszt przetwarzania.
+- Forma prezentacji wyników: tabele porównawcze, analiza jakościowa, wnioski dotyczące kompromisu jakość-wydajność.
 
 ## Wykorzystane technologie
-TODO
+
+- **Python 3.12** - język implementacji.
+- **LangChain** - orkiestracja pipeline'u RAG.
+- **Hugging Face Embeddings** (m.in. `paraphrase-multilingual-mpnet-base-v2`) - reprezentacja semantyczna dokumentów i zapytań.
+- **Qdrant** - baza wektorowa i wyszukiwanie semantyczne.
+- **PyPDF / loader PDF** - ekstrakcja treści dokumentów źródłowych.
+- **LLM providers** (OpenAI, Anthropic, Google, Groq) - warstwa modeli generatywnych i eksperymenty między-modelowe.
+- **Pydantic Settings + python-dotenv** - konfiguracja środowiska i kluczy API.
+- **NumPy** - obliczenia podobieństwa wektorowego (semantic cache).
+- **Pytest / skrypty testowe** - testy komponentowe i integracyjne.
+- **Streamlit** - aplikacja demonstracyjna z czatem i panelem wyboru metod.
 
 
 ## Bibliografia
