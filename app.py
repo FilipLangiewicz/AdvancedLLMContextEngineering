@@ -135,13 +135,34 @@ html, body, [class*="css"] {
     display: none !important;
 }
 
-/* Chat input */
-[data-testid="stChatInputTextArea"] {
-    background-color: #ffffff !important;
-    border: 1px solid #d4d0c8 !important;
-    border-radius: 2px !important;
+/* ====== CHAT INPUT ====== */
+/* Target the outer container to give it a styled card look */
+[data-testid="stChatInput"] {
+    background: #ffffff !important;
+    border: 1.5px solid #c8c4bc !important;
+    border-radius: 10px !important;
+    box-shadow: 0 3px 14px rgba(26,32,56,0.09) !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+}
+/* Target textarea inside */
+[data-testid="stChatInput"] textarea {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
     color: #1a2038 !important;
     font-size: 0.9rem !important;
+    font-family: 'Inter', sans-serif !important;
+    padding: 0.85rem 1rem !important;
+}
+[data-testid="stChatInput"] textarea::placeholder {
+    color: #b0a99e !important;
+}
+/* Send button */
+[data-testid="stChatInput"] button {
+    /* background-color: #1a2038 !important; */
+    border-radius: 6px !important;
+    margin: 4px !important;
 }
 
 /* Expander */
