@@ -5,187 +5,20 @@ from query.base import QueryUnderstandingStrategy
 from reranking.base import RerankingStrategy
 from generation.embeddings_factory import build_embeddings
 from pipeline import build_pipeline
+from pathlib import Path
+
+
+def load_css(path: Path) -> None:
+    with open(path, encoding="utf-8") as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 st.set_page_config(
-    page_title="Asystent Prawny",
+    page_title="Doradca Energetyczny",
     page_icon="⚖",
     layout="wide",
 )
 
-st.markdown("""
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Inter:wght@300;400;500;600&display=swap');
-
-html, body, [class*="css"] {
-    font-family: 'Inter', -apple-system, sans-serif !important;
-}
-
-.stApp {
-    background-color: #f5f4f0;
-}
-
-/* ====== SIDEBAR ====== */
-[data-testid="stSidebar"] {
-    background-color: #1a2038 !important;
-}
-[data-testid="stSidebar"] > div {
-    background-color: #1a2038 !important;
-}
-[data-testid="stSidebar"] p,
-[data-testid="stSidebar"] label,
-[data-testid="stSidebar"] span {
-    color: #c8cdd9 !important;
-    font-size: 0.85rem !important;
-}
-[data-testid="stSidebar"] h3 {
-    color: #ffffff !important;
-    font-family: 'Lora', serif !important;
-    font-size: 1.05rem !important;
-    font-weight: 600 !important;
-    padding-bottom: 0.7rem;
-    border-bottom: 1px solid #2d3561;
-    margin-bottom: 1.2rem;
-}
-.sidebar-section {
-    display: block;
-    color: #6e7898 !important;
-    font-size: 0.67rem !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.14em !important;
-    text-transform: uppercase !important;
-    margin: 1.5rem 0 0.3rem 0 !important;
-}
-[data-testid="stSidebar"] hr {
-    border-color: #2d3561 !important;
-    margin: 1.5rem 0 !important;
-}
-[data-testid="stSidebar"] .stButton > button {
-    background-color: transparent !important;
-    border: 1px solid #2d3561 !important;
-    color: #6e7898 !important;
-    font-size: 0.78rem !important;
-    letter-spacing: 0.06em !important;
-    transition: all 0.2s !important;
-}
-[data-testid="stSidebar"] .stButton > button:hover {
-    border-color: #5a6490 !important;
-    color: #c8cdd9 !important;
-    background-color: #222c4a !important;
-}
-[data-testid="stSidebar"] [data-testid="stSelectbox"] > div > div {
-    background-color: #222c4a !important;
-    border-color: #2d3561 !important;
-    color: #c8cdd9 !important;
-}
-
-/* ====== HEADER ====== */
-.legal-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1.2rem;
-    padding: 1.4rem 0 1rem 0;
-    border-bottom: 2px solid #1a2038;
-    margin-bottom: 2rem;
-}
-.legal-header-title {
-    font-family: 'Lora', Georgia, serif;
-    font-size: 1.45rem;
-    font-weight: 600;
-    color: #1a2038;
-    letter-spacing: 0.01em;
-    margin: 0;
-    line-height: 1;
-}
-.legal-header-subtitle {
-    font-size: 0.7rem;
-    font-weight: 500;
-    color: #9ca3af;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin: 0;
-    line-height: 1;
-}
-
-/* ====== CHAT ====== */
-[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) {
-    flex-direction: row-reverse !important;
-    margin-left: 18% !important;
-}
-[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) [data-testid="stChatMessageContent"] {
-    background-color: #1a2038 !important;
-    border: none !important;
-    border-radius: 4px 4px 0 4px !important;
-}
-[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) [data-testid="stChatMessageContent"] p {
-    color: #eef0f5 !important;
-}
-[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) {
-    margin-right: 18% !important;
-}
-[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) [data-testid="stChatMessageContent"] {
-    background-color: #ffffff !important;
-    border: 1px solid #e2dfd6 !important;
-    border-radius: 4px 4px 4px 0 !important;
-}
-[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) [data-testid="stChatMessageContent"] p {
-    color: #1a2038 !important;
-}
-[data-testid="chatAvatarIcon-user"],
-[data-testid="chatAvatarIcon-assistant"] {
-    display: none !important;
-}
-
-/* ====== CHAT INPUT ====== */
-/* Target the outer container to give it a styled card look */
-[data-testid="stChatInput"] {
-    background: #ffffff !important;
-    border: 1.5px solid #c8c4bc !important;
-    border-radius: 10px !important;
-    box-shadow: 0 3px 14px rgba(26,32,56,0.09) !important;
-    overflow: hidden !important;
-    padding: 0 !important;
-}
-/* Target textarea inside */
-[data-testid="stChatInput"] textarea {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    color: #1a2038 !important;
-    font-size: 0.9rem !important;
-    font-family: 'Inter', sans-serif !important;
-    padding: 0.85rem 1rem !important;
-}
-[data-testid="stChatInput"] textarea::placeholder {
-    color: #b0a99e !important;
-}
-/* Send button */
-[data-testid="stChatInput"] button {
-    /* background-color: #1a2038 !important; */
-    border-radius: 6px !important;
-    margin: 4px !important;
-}
-
-/* Expander */
-[data-testid="stExpander"] {
-    background-color: #faf9f6 !important;
-    border: 1px solid #e2dfd6 !important;
-    border-radius: 2px !important;
-}
-[data-testid="stExpander"] summary p {
-    font-size: 0.75rem !important;
-    color: #9ca3af !important;
-    font-weight: 500 !important;
-    letter-spacing: 0.04em !important;
-}
-
-footer { display: none !important; }
-#MainMenu { visibility: hidden !important; }
-
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #f5f4f0; }
-::-webkit-scrollbar-thumb { background: #c8cdd9; border-radius: 2px; }
-</style>
-""", unsafe_allow_html=True)
+load_css(Path(__file__).parent / "style.css")
 
 
 @st.cache_resource(show_spinner="Ładowanie modelu…")
@@ -224,7 +57,7 @@ with st.sidebar:
         options=[RerankingStrategy.ORIGINAL_ORDER, RerankingStrategy.U_SHAPE_REORDER],
         format_func=lambda x: {
             RerankingStrategy.ORIGINAL_ORDER: "Kolejność oryginalna",
-            RerankingStrategy.U_SHAPE_REORDER: "Reorder U-Shape",
+            RerankingStrategy.U_SHAPE_REORDER: "Zmiana kolejności U-Shape",
         }[x],
         label_visibility="collapsed",
     )
@@ -277,7 +110,7 @@ with st.sidebar:
 # Rebuild pipeline only when settings change
 pipeline_key = (chunking, query_understanding, compression, reranking, provider, retrieval_k, with_cache, cache_threshold)
 if "pipeline_key" not in st.session_state or st.session_state.pipeline_key != pipeline_key:
-    with st.spinner("Budowanie potoku przetwarzania…"):
+    with st.spinner("Rozgrzewanie aplikacji…"):
         embeddings = get_embeddings()
         st.session_state.pipeline = build_pipeline(
             embeddings=embeddings,
@@ -296,8 +129,8 @@ if "pipeline_key" not in st.session_state or st.session_state.pipeline_key != pi
 # Header
 st.markdown("""
 <div class="legal-header">
-    <span class="legal-header-title">Asystent Prawny</span>
-    <span class="legal-header-subtitle">System analizy dokumentów prawnych</span>
+    <span class="legal-header-title">Doradca Energetyczny</span>
+    <span class="legal-header-subtitle">Analiza przepisów z zakresu energetyki</span>
 </div>
 """, unsafe_allow_html=True)
 

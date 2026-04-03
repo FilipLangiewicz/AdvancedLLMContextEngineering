@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Inter:wght@300;400;500;600&display=swap');
+
+html, body, [class*="css"] {
+    font-family: 'Inter', -apple-system, sans-serif !important;
+}
+
+.stApp {
+    background-color: #f5f4f0;
+}
+
+/* ====== SIDEBAR ====== */
+[data-testid="stSidebar"] {
+    background-color: #1a2038 !important;
+}
+[data-testid="stSidebar"] > div {
+    background-color: #1a2038 !important;
+}
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] span {
+    color: #c8cdd9 !important;
+    font-size: 0.85rem !important;
+}
+/* Main sidebar title */
+[data-testid="stSidebar"] h3 {
+    color: #ffffff !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+    padding-bottom: 1rem !important;
+    border-bottom: 1px solid #2d3561 !important;
+    margin-bottom: 0 !important;
+}
+.sidebar-section {
+    display: block;
+    color: #6e7898 !important;
+    font-size: 0.67rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase !important;
+    margin: 1.5rem 0 0.3rem 0 !important;
+}
+[data-testid="stSidebar"] hr {
+    border-color: #2d3561 !important;
+    margin: 1.5rem 0 !important;
+}
+[data-testid="stSidebar"] .stButton > button {
+    background-color: transparent !important;
+    border: 1px solid #2d3561 !important;
+    color: #6e7898 !important;
+    font-size: 0.78rem !important;
+    letter-spacing: 0.06em !important;
+    transition: all 0.2s !important;
+}
+[data-testid="stSidebar"] .stButton > button:hover {
+    border-color: #5a6490 !important;
+    color: #c8cdd9 !important;
+    background-color: #222c4a !important;
+}
+[data-testid="stSidebar"] [data-testid="stSelectbox"] > div > div {
+    background-color: #222c4a !important;
+    border-color: #2d3561 !important;
+    color: #c8cdd9 !important;
+}
+
+/* ====== HEADER ====== */
+.legal-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.2rem;
+    padding: 1.4rem 0 1rem 0;
+    border-bottom: 2px solid #1a2038;
+    margin-bottom: 2rem;
+}
+.legal-header-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a2038;
+    letter-spacing: -0.01em;
+    line-height: 1;
+}
+.legal-header-subtitle {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #9ca3af;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1;
+}
+
+/* ====== CHAT ====== */
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) {
+    flex-direction: row-reverse !important;
+    margin-left: 18% !important;
+}
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) [data-testid="stChatMessageContent"] {
+    background-color: #1a2038 !important;
+    border: none !important;
+    border-radius: 4px 4px 0 4px !important;
+}
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) [data-testid="stChatMessageContent"] p {
+    color: #eef0f5 !important;
+}
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) {
+    margin-right: 18% !important;
+}
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) [data-testid="stChatMessageContent"] {
+    background-color: #ffffff !important;
+    border: 1px solid #e2dfd6 !important;
+    border-radius: 4px 4px 4px 0 !important;
+}
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) [data-testid="stChatMessageContent"] p {
+    color: #1a2038 !important;
+}
+[data-testid="chatAvatarIcon-user"],
+[data-testid="chatAvatarIcon-assistant"] {
+    display: none !important;
+}
+
+/* ====== CHAT INPUT ====== */
+/* Target the outer container to give it a styled card look */
+[data-testid="stChatInput"] {
+    background: #ffffff !important;
+    border: 1.5px solid #c8c4bc !important;
+    border-radius: 10px !important;
+    box-shadow: 0 3px 14px rgba(26,32,56,0.09) !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+}
+/* Target textarea inside */
+[data-testid="stChatInput"] textarea {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #1a2038 !important;
+    font-size: 0.9rem !important;
+    font-family: 'Inter', sans-serif !important;
+    padding: 0.85rem 1rem !important;
+}
+[data-testid="stChatInput"] textarea::placeholder {
+    color: #b0a99e !important;
+}
+/* Send button */
+[data-testid="stChatInput"] button {
+    /* background-color: #1a2038 !important; */
+    border-radius: 6px !important;
+    margin: 4px !important;
+}
+
+/* Expander */
+[data-testid="stExpander"] {
+    background-color: #faf9f6 !important;
+    border: 1px solid #e2dfd6 !important;
+    border-radius: 2px !important;
+}
+[data-testid="stExpander"] summary p {
+    font-size: 0.75rem !important;
+    color: #9ca3af !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.04em !important;
+}
+
+footer { display: none !important; }
+/* #MainMenu { visibility: hidden !important; }
+[data-testid="stToolbar"] { display: none !important; } */
+
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #f5f4f0; }
+::-webkit-scrollbar-thumb { background: #c8cdd9; border-radius: 2px; }
