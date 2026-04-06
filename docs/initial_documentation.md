@@ -66,7 +66,7 @@ W projekcie zostanie przygotowany pipeline przetwarzania dokumentów obejmujący
 
 ### 3. Pipeline RAG
 Pipeline RAG dotyczy etapów prowadzących od analizy zapytania (promptu) do wygenerowania odpowiedzi na podstawie kontekstu z bazy wektorowej. Główne etapy przetwarzania obejmują:
-- query understanding - doprecyzowanie treści zapytania, zostanie zaimplementowana strategia `rewriting`, która przeredaguje zapytanie użytkownika na bardziej formalną wersję odpowiadającą dokumentom prawnym,
+- query understanding - doprecyzowanie treści zapytania, zostanie zaimplementowana strategia rewriting, która przeredaguje zapytanie użytkownika na bardziej formalną wersję odpowiadającą dokumentom prawnym,
 - retrieval - pobranie trafnych fragmentów kontekstu z bazy wektorowej za pomocą wyszukiwania semantycznego,
 - reranking - uporządkowanie wyników wyszukiwania, dostępne będą dwie opcje: jedna zachowująca domyślną kolejność fragmentów i druga korzystająca z metody "U-shaped",
 - context compression - skrócenie kontekstu do kluczowych treści zgodnie z wybranymi metodami. Zostanie zaimplementowana metoda filtru ekstrakcyjnego, który usuwa nieistotne fragmenty tekstu oraz metoda hierarchiczna, która tworzy podsumowuje każdy chunk, a następnie agreguje do jednego streszczenia,
