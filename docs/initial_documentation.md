@@ -16,11 +16,11 @@ Implementacja i ewaluacja technik zaawansowanego zarządzania kontekstem (contex
 
 ## Definicja problemu
 
-Kluczowym wyzwaniem współczesnych systemów RAG jest efektywne zarządzanie długim kontekstem — modele językowe dysponują skończonym oknem kontekstowym i nie są w stanie przetworzyć obszernych dokumentów w całości. Projekt skupia się na domenie prawnej, gdzie akty, kodeksy i regulaminy liczą dziesiątki lub setki stron, a precyzja i kompletność odpowiedzi ma szczególne znaczenie. W tym kontekście identyfikujemy następujące problemy:
+Kluczowym wyzwaniem współczesnych systemów RAG jest efektywne zarządzanie długim kontekstem - modele językowe dysponują skończonym oknem kontekstowym i nie są w stanie przetworzyć obszernych dokumentów w całości. Projekt skupia się na domenie prawnej, gdzie akty, kodeksy i regulaminy liczą dziesiątki lub setki stron, a precyzja i kompletność odpowiedzi ma szczególne znaczenie. W tym kontekście identyfikujemy następujące problemy:
 
 - **Zarządzanie długim kontekstem:** dokumenty prawne przekraczające 10 000 tokenów wymagają podziału na fragmenty. Standardowy podział stałej długości nie uwzględnia struktury prawnej dokumentu, co prowadzi do rozbicia logicznie powiązanych przepisów i utraty kontekstu semantycznego.
 - **Rozumienie zapytań:** pytania użytkowników są często sformułowane w języku potocznym, niedostosowanym do struktury bazy wiedzy, co bez mechanizmu ich przekształcania obniża trafność wyszukiwania.
-- **Porównanie strategii zarządzania kontekstem:** brakuje empirycznych podstaw do oceny, która strategia przetwarzania kontekstu — kompresja, hierarchiczne podsumowywanie czy inne — daje najlepsze wyniki w domenie prawnej.
+- **Porównanie strategii zarządzania kontekstem:** brakuje empirycznych podstaw do oceny, która strategia przetwarzania kontekstu - kompresja, hierarchiczne podsumowywanie czy inne - daje najlepsze wyniki w domenie prawnej.
 - **Efektywność przetwarzania:** brak mechanizmu cache'owania powoduje, że każde zapytanie dotyczące tych samych dokumentów generuje zbędne obciążenie systemu.
 - **Zjawisko „lost-in-the-middle":** modele językowe mają tendencję do pomijania informacji ze środkowych części kontekstu, co w dokumentach prawnych może skutkować pominięciem kluczowych sekcji.
 
@@ -65,17 +65,17 @@ Dokumenty PDF wykorzystane do realizacji projektu zostały umieszczone w katalog
 W projekcie zostanie przygotowany pipeline przetwarzania dokumentów obejmujący etapy od wczytania plików PDF, przez czyszczenie treści, po podział tekstu i zapis reprezentacji semantycznych w bazie wektorowej. Porównane zostaną dwa podejścia do chunkingu, aby porównać strategię podziału opartego na strukturze dokumentu ze strategią bazującą na podobieństwie semantycznym treści. Taka organizacja danych ma umożliwić późniejszą analizę wpływu sposobu segmentacji dokumentów na jakość odpowiedzi systemu. Całość zostanie zaprojektowana modułowo, aby możliwe było rozwijanie lub wymiana poszczególnych etapów bez przebudowy całego procesu.
 
 ### 3. Pipeline RAG
-Pipeline RAG dotyczy etapów prowadzących od analizy zapytania (propmtu) do wygenerowania odpowiedzi na podstawie kontekstu z bazy wektorowej. Główne etapy przetwarzania obejmują:
+Pipeline RAG dotyczy etapów prowadzących od analizy zapytania (promptu) do wygenerowania odpowiedzi na podstawie kontekstu z bazy wektorowej. Główne etapy przetwarzania obejmują:
 - query understanding - doprecyzowanie treści zapytania,
 - retrieval - pobranie trafnych fragmentów kontekstu z bazy wektorowej,
 - reranking - uporządkowanie wyników według użyteczności,
-- context compression - skrócenie kontekstu do kluczowych treści,
+- context compression - skrócenie kontekstu do kluczowych treści zgodnie z wybranymi metodami,
 - generation - wygenerowanie odpowiedzi na podstawie kontekstu.
 
 Dodatkowo zostanie zastosowana metoda semantic cache, która będzie optymalizowała obsługę powtarzalnych zapytań, które są zbliżone semantycznie.
 
 ### 4. Aplikacja Streamlit
-Zostanie przygotowana aplikacja w formie chatu z wykorzystaniem pakietu Streamlit. Interfejs umożliwi zmianę najważniejszych ustawień, aby móc porównać różne metody i strategie. Po przesłaniu zapytania, aplikacja będzie zwracała odpowiedź wraz z dokładnym odwołaniem do źródła.
+Zostanie przygotowana aplikacja w formie czatu z wykorzystaniem pakietu Streamlit. Interfejs umożliwi zmianę najważniejszych ustawień, aby móc porównać różne metody i strategie. Po przesłaniu zapytania, aplikacja będzie zwracała odpowiedź wraz z dokładnym odwołaniem do źródła.
 
 ### 5. Plan eksperymentów i ewaluacji
 Istotnym elementem projektu będzie porównanie zaimplementowanych metod w celu zbadania ich wpływu na jakość generowanych odpowiedzi. Ewaluacja będzie skupiona na jakości odpowiedzi oraz aspektach praktycznych, takich jak stabilność działania na dłuższym kontekście, czas odpowiedzi i koszt przetwarzania.
@@ -88,7 +88,7 @@ Istotnym elementem projektu będzie porównanie zaimplementowanych metod w celu 
 - **Qdrant** - baza wektorowa i wyszukiwanie semantyczne.
 - **modele LLM** (Google, Groq) - modele generatywne odpytywane za pośrednictwem kluczy API.
 - **NumPy** - obliczenia podobieństwa wektorowego (semantic cache).
-- **Streamlit** - aplikacja w formie chatu z możliwością wyboru metod.
+- **Streamlit** - aplikacja w formie czatu z możliwością wyboru metod.
 
 
 ## Bibliografia
