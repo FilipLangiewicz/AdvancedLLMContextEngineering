@@ -69,7 +69,7 @@ Pipeline RAG dotyczy etapów prowadzących od analizy zapytania (promptu) do wyg
 - query understanding - doprecyzowanie treści zapytania, zostanie zaimplementowana strategia rewriting, która przeredaguje zapytanie użytkownika na bardziej formalną wersję odpowiadającą dokumentom prawnym,
 - retrieval - pobranie trafnych fragmentów kontekstu z bazy wektorowej za pomocą wyszukiwania semantycznego,
 - reranking - uporządkowanie wyników wyszukiwania, dostępne będą dwie opcje: jedna zachowująca domyślną kolejność fragmentów i druga korzystająca z metody "U-shaped",
-- context compression - skrócenie kontekstu do kluczowych treści zgodnie z wybranymi metodami. Zostanie zaimplementowana metoda filtru ekstrakcyjnego, który usuwa nieistotne fragmenty tekstu oraz metoda hierarchiczna, która tworzy podsumowuje każdy chunk, a następnie agreguje do jednego streszczenia,
+- context compression - skrócenie kontekstu do kluczowych treści zgodnie z wybranymi metodami. Zostanie zaimplementowana metoda filtru ekstrakcyjnego, który usuwa nieistotne fragmenty tekstu oraz metoda hierarchiczna, która podsumowuje każdy chunk, a następnie agreguje do jednego streszczenia,
 - generation - moduł, który buduje finalny kontekst oraz odpytuje model LLM na podstawie zdefiniowanego promptu systemowego, który wymusza odpowiedź ściśle bazującą na przesłanym kontekście.
 
 Analogiczne zdefiniowanie kolejnych kroków i metod prowadzących do wygenerowania najlepszej odpowiedzi zostało przedstawione w schemacie "Rewrite-Retrieve-Read" [3].
