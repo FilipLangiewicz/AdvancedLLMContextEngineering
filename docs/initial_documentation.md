@@ -1,4 +1,4 @@
-# Temat projektu: Context Engineering - zaawansowane zarządzanie kontekstem
+# Context Engineering - zaawansowane zarządzanie kontekstem
 
 Implementacja i ewaluacja technik zaawansowanego zarządzania kontekstem (context engineering) w systemach agentowych/RAG.
 
@@ -16,13 +16,13 @@ Implementacja i ewaluacja technik zaawansowanego zarządzania kontekstem (contex
 
 ## Definicja problemu
 
-Kluczowym wyzwaniem współczesnych systemów RAG jest efektywne zarządzanie długim kontekstem — modele językowe dysponują skończonym oknem kontekstowym i nie są w stanie przetworzyć obszernych dokumentów w całości. Projekt skupia się na domenie prawnej, gdzie akty, kodeksy i regulaminy liczą dziesiątki lub setki stron, a precyzja i kompletność odpowiedzi ma szczególne znaczenie. W tym kontekście identyfikujemy następujące problemy szczegółowe:
+Kluczowym wyzwaniem współczesnych systemów RAG jest efektywne zarządzanie długim kontekstem — modele językowe dysponują skończonym oknem kontekstowym i nie są w stanie przetworzyć obszernych dokumentów w całości. Projekt skupia się na domenie prawnej, gdzie akty, kodeksy i regulaminy liczą dziesiątki lub setki stron, a precyzja i kompletność odpowiedzi ma szczególne znaczenie. W tym kontekście identyfikujemy następujące problemy:
 
 - **Zarządzanie długim kontekstem:** dokumenty prawne przekraczające 10 000 tokenów wymagają podziału na fragmenty. Standardowy podział stałej długości nie uwzględnia struktury prawnej dokumentu, co prowadzi do rozbicia logicznie powiązanych przepisów i utraty kontekstu semantycznego.
 - **Rozumienie zapytań:** pytania użytkowników są często sformułowane w języku potocznym, niedostosowanym do struktury bazy wiedzy, co bez mechanizmu ich przekształcania obniża trafność wyszukiwania.
 - **Porównanie strategii zarządzania kontekstem:** brakuje empirycznych podstaw do oceny, która strategia przetwarzania kontekstu — kompresja, hierarchiczne podsumowywanie czy inne — daje najlepsze wyniki w domenie prawnej.
 - **Efektywność przetwarzania:** brak mechanizmu cache'owania powoduje, że każde zapytanie dotyczące tych samych dokumentów generuje zbędne obciążenie systemu.
-- **Zjawisko „lost-in-the-middle":** modele językowe mają tendencję do pomijania informacji z środkowych części kontekstu, co w dokumentach prawnych może skutkować pominięciem kluczowych przepisów lub odesłań.
+- **Zjawisko „lost-in-the-middle":** modele językowe mają tendencję do pomijania informacji ze środkowych części kontekstu, co w dokumentach prawnych może skutkować pominięciem kluczowych sekcji.
 
 ## Przegląd literatury
 
@@ -36,15 +36,15 @@ Literatura wskazuje, że proste dzielenie tekstu na fragmenty o stałej długoś
 
 ### Query rewriting
 
-Xibei Ma i in. (2023) proponują schemat Rewrite-Retrieve-Read, w którym zapytanie użytkownika jest najpierw reformułowane do postaci bardziej zgodnej z językiem dokumentów i wymaganiami wyszukiwarki [3]. Zeqiu Wu i in. (2022) w pracy nad CONQRR pokazują, że przepisywanie zapytań konwersacyjnych do formy niezależnej (stand-alone) poprawia skuteczność wyszukiwania, zwłaszcza w systemach typu chat [4].
+Xinbei Ma i in. (2023) proponują schemat Rewrite-Retrieve-Read, w którym zapytanie użytkownika jest najpierw reformułowane do postaci bardziej zgodnej z językiem dokumentów i wymaganiami wyszukiwarki [3]. Zeqiu Wu i in. (2022) w pracy nad CONQRR pokazują, że przepisywanie zapytań konwersacyjnych do formy niezależnej (stand-alone) poprawia skuteczność wyszukiwania, zwłaszcza w systemach typu chat [4].
 
 ### Kompresja kontekstu i podsumowywanie
 
-Shuyu Guo i in. (2025) wprowadzają ACC-RAG, który adaptacyjnie kompresuje kontekst poprzez selekcję najważniejszych tokenów, co pozwala zmniejszyć koszty obliczeniowe bez istotnej utraty jakości [5]. Xin Cheng i in. (2024) proponują xRAG, gdzie dokument reprezentowany jest jako pojedynczy embedding-token, co znacząco redukuje długość wejścia [6]. Z kolei Litu Ou i Mirella Lapata (2025) analizują hierarchiczne podsumowywanie, wskazując, że brak dostępu do oryginalnego kontekstu podczas agregacji zwiększa ryzyko generowania nieścisłości [7].
+Shuyu Guo i in. (2025) wprowadzają ACC-RAG, który adaptacyjnie kompresuje kontekst poprzez adaptacyjną kompresję z hierarchicznym wyborem istotnych fragmentów, co pozwala zmniejszyć koszty obliczeniowe bez istotnej utraty jakości [5]. Xin Cheng i in. (2024) proponują xRAG, gdzie dokument reprezentowany jest jako pojedynczy embedding-token, co znacząco redukuje długość wejścia [6]. Z kolei Litu Ou i Mirella Lapata (2025) analizują hierarchiczne podsumowywanie, wskazując, że brak dostępu do oryginalnego kontekstu podczas agregacji zwiększa ryzyko generowania nieścisłości [7].
 
 ### Cache w systemach RAG
 
-Chao Jin i in. (2024) proponują RAGCache – mechanizm cache’owania fragmentów wiedzy i stanów modelu w architekturze hierarchicznej. Praca pokazuje, że takie podejście znacząco redukuje czas generacji i zwiększa przepustowość, szczególnie w scenariuszach z powtarzalnymi zapytaniami do tych samych dokumentów [8].
+Chao Jin i in. (2024) proponują RAGCache – mechanizm cache’owania fragmentów wiedzy i stanów modelu w architekturze hierarchicznej. Praca pokazuje, że takie podejście znacząco redukuje czas do wygenerowania pierwszego tokenu (TTFT) i zwiększa przepustowość [8].
 
 ### Problem „lost-in-the-middle”
 
@@ -52,49 +52,43 @@ Nelson F. Liu i in. (2023) wykazują, że modele językowe mają trudności z wy
 
 
 ## Opis rozwiązania
-Modułowy system RAG dla domeny prawa energetycznego. Cel: porównanie technik context engineering w jednolitych warunkach eksperymentalnych.
+Projekt obejmuje modułowy system RAG dla dziedziny prawa energetycznego. Celem jest porównanie różnych technik zaawansowanego zarządzania kontekstem (context engineering) w pracy z obszernymi dokumentami o formalnym charakterze. Projekt został podzielony na pięć sekcji przedstawionych poniżej.
 
-### 1. Dane i źródła danych
-Dokumenty PDF umieszczone lokalnie w katalogu `data` (`document1.pdf`, `document2.pdf`, `document3.pdf`). Zakres: akty i regulacje prawne dotyczące sektora energetycznego.
+### 1. Dane
+Dokumenty PDF wykorzystane do realizacji projektu zostały umieszczone w katalogu `data/pdf` (`document1.pdf`, `document2.pdf`, `document3.pdf`). Zawierają one akty i regulacje prawne dotyczące sektora energetycznego, a w szczególności:
 
 - **Dokument 1:** Ustawa z dnia 20 maja 2016 r. o efektywności energetycznej (33 strony),
 - **Dokument 2:** Rozporządzenie Ministra Klimatu z dnia 7 kwietnia 2020 r. w sprawie szczegółowych zasad kształtowania i kalkulacji taryf oraz rozliczeń z tytułu zaopatrzenia w ciepło (23 strony),
 - **Dokument 3:** Ustawa z dnia 10 kwietnia 1997 r., Prawo energetyczne (428 stron). 
 
-### 2. Pipeline przetwarzania dokumentów
-- Pipeline przetwarzania: wczytanie PDF, czyszczenie tekstu, chunking, generacja embeddingów, zapis do bazy wektorowej.
-- Dwie strategie podziału dokumentów: chunking strukturalny (rozdział/art./§) oraz semantic chunking (podobieństwo semantyczne).
-- Dwie równoległe bazy wektorowe jako podstawa porównań wpływu chunkingu na jakość odpowiedzi.
+### 2. Przetwarzanie dokumentów i baza wektorowa
+W projekcie zostanie przygotowany pipeline przetwarzania dokumentów obejmujący etapy od wczytania plików PDF, przez czyszczenie treści, po podział tekstu i zapis reprezentacji semantycznych w bazie wektorowej. Porównane zostaną dwa podejścia do chunkingu, aby porównać strategię podziału opartego na strukturze dokumentu ze strategią bazującą na podobieństwie semantycznym treści. Taka organizacja danych ma umożliwić późniejszą analizę wpływu sposobu segmentacji dokumentów na jakość odpowiedzi systemu. Całość zostanie zaprojektowana modułowo, aby możliwe było rozwijanie lub wymiana poszczególnych etapów bez przebudowy całego procesu.
 
 ### 3. Pipeline RAG
-- Sekwencja przetwarzania zapytania: query understanding -> retrieval -> reranking -> context compression -> generation.
-- Moduł query understanding: porównanie wariantu bazowego z query rewriting.
-- Moduł rerankingu: wariant bazowy vs. U-shape reorder jako mechanizm mitygacji lost-in-the-middle.
-- Moduł kompresji kontekstu: ekstrakcyjne filtrowanie treści oraz hierarchiczne podsumowywanie.
-- Semantic cache: obsługa powtarzalnych i semantycznie podobnych zapytań; redukcja opóźnień odpowiedzi i kosztu obliczeń.
+Pipeline RAG dotyczy etapów prowadzących od analizy zapytania (propmtu) do wygenerowania odpowiedzi na podstawie kontekstu z bazy wektorowej. Główne etapy przetwarzania obejmują:
+- query understanding - doprecyzowanie treści zapytania,
+- retrieval - pobranie trafnych fragmentów kontekstu z bazy wektorowej,
+- reranking - uporządkowanie wyników według użyteczności,
+- context compression - skrócenie kontekstu do kluczowych treści,
+- generation - wygenerowanie odpowiedzi na podstawie kontekstu.
+
+Dodatkowo zostanie zastosowana metoda semantic cache, która będzie optymalizowała obsługę powtarzalnych zapytań, które są zbliżone semantycznie.
 
 ### 4. Aplikacja Streamlit
-- Aplikacja webowa Streamlit z interfejsem czatu do konwersacji z systemem.
-- Konfigurowalność eksperymentu z poziomu UI: wybór modelu LLM, strategii chunkingu, metody query understanding, wariantu rerankingu i kompresji kontekstu.
-- Prezentacja odpowiedzi wraz ze źródłami i metadanymi dokumentów.
+Zostanie przygotowana aplikacja w formie chatu z wykorzystaniem pakietu Streamlit. Interfejs umożliwi zmianę najważniejszych ustawień, aby móc porównać różne metody i strategie. Po przesłaniu zapytania, aplikacja będzie zwracała odpowiedź wraz z dokładnym odwołaniem do źródła.
 
 ### 5. Plan eksperymentów i ewaluacji
-- Seria eksperymentów porównawczych dla wielu konfiguracji metod context engineering.
-- Kryteria oceny: trafność, kompletność, odporność na lost-in-the-middle, czas odpowiedzi, koszt przetwarzania.
-- Forma prezentacji wyników: tabele porównawcze, analiza jakościowa, wnioski dotyczące kompromisu jakość-wydajność.
+Istotnym elementem projektu będzie porównanie zaimplementowanych metod w celu zbadania ich wpływu na jakość generowanych odpowiedzi. Ewaluacja będzie skupiona na jakości odpowiedzi oraz aspektach praktycznych, takich jak stabilność działania na dłuższym kontekście, czas odpowiedzi i koszt przetwarzania.
 
 ## Wykorzystane technologie
 
-- **Python 3.12** - język implementacji.
+- **Python 3.12**
 - **LangChain** - orkiestracja pipeline'u RAG.
-- **Hugging Face Embeddings** (m.in. `paraphrase-multilingual-mpnet-base-v2`) - reprezentacja semantyczna dokumentów i zapytań.
+- **Hugging Face Embeddings** - reprezentacja semantyczna dokumentów i zapytań.
 - **Qdrant** - baza wektorowa i wyszukiwanie semantyczne.
-- **PyPDF / loader PDF** - ekstrakcja treści dokumentów źródłowych.
-- **LLM providers** (OpenAI, Anthropic, Google, Groq) - warstwa modeli generatywnych i eksperymenty między-modelowe.
-- **Pydantic Settings + python-dotenv** - konfiguracja środowiska i kluczy API.
+- **modele LLM** (Google, Groq) - modele generatywne odpytywane za pośrednictwem kluczy API.
 - **NumPy** - obliczenia podobieństwa wektorowego (semantic cache).
-- **Pytest / skrypty testowe** - testy komponentowe i integracyjne.
-- **Streamlit** - aplikacja demonstracyjna z czatem i panelem wyboru metod.
+- **Streamlit** - aplikacja w formie chatu z możliwością wyboru metod.
 
 
 ## Bibliografia
