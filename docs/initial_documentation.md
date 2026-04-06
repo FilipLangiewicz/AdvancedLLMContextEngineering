@@ -66,13 +66,15 @@ W projekcie zostanie przygotowany pipeline przetwarzania dokumentów obejmujący
 
 ### 3. Pipeline RAG
 Pipeline RAG dotyczy etapów prowadzących od analizy zapytania (promptu) do wygenerowania odpowiedzi na podstawie kontekstu z bazy wektorowej. Główne etapy przetwarzania obejmują:
-- query understanding - doprecyzowanie treści zapytania,
-- retrieval - pobranie trafnych fragmentów kontekstu z bazy wektorowej,
-- reranking - uporządkowanie wyników według użyteczności,
-- context compression - skrócenie kontekstu do kluczowych treści zgodnie z wybranymi metodami,
-- generation - wygenerowanie odpowiedzi na podstawie kontekstu.
+- query understanding - doprecyzowanie treści zapytania, zostanie zaimplementowana strategia `rewriting`, która przeredaguje zapytanie użytkownika na bardziej formalną wersję odpowiadającą dokumentom prawnym,
+- retrieval - pobranie trafnych fragmentów kontekstu z bazy wektorowej za pomocą wyszukiwania semantycznego,
+- reranking - uporządkowanie wyników wyszukiwania, dostępne będą dwie opcje: jedna zachowująca domyślną kolejność fragmentów i druga korzystająca z metody "U-shaped",
+- context compression - skrócenie kontekstu do kluczowych treści zgodnie z wybranymi metodami. Zostanie zaimplementowana metoda filtru ekstrakcyjnego, który usuwa nieistotne fragmenty tekstu oraz metoda hierarchiczna, która tworzy podsumowuje każdy chunk, a następnie agreguje do jednego streszczenia,
+- generation - moduł, który buduje finalny kontekst oraz odpytuje model LLM na podstawie zdefiniowanego promptu systemowego, który wymusza odpowiedź ściśle bazującą na przesłanym kontekście.
 
-Dodatkowo zostanie zastosowana metoda semantic cache, która będzie optymalizowała obsługę powtarzalnych zapytań, które są zbliżone semantycznie.
+Analogiczne zdefiniowanie kolejnych kroków i metod prowadzących do wygenerowania najlepszej odpowiedzi zostało przedstawione w schemacie "Rewrite-Retrieve-Read" [3].
+
+Dodatkowo zostanie zastosowana metoda semantic cache, która będzie optymalizowała obsługę powtarzalnych zapytań, które są zbliżone semantycznie. Dla nowego zapytania zostanie wyliczony embedding i będzie on porównany z embeddingami wcześniejszych zapytań za pomocą metryki cosine similarity. Jeśli inne zapytanie jest wystarczająco podobne, na podstawie ustalonego progu, to zostanie zwrócona wygenerowana wcześniej odpowiedź.
 
 ### 4. Aplikacja Streamlit
 Zostanie przygotowana aplikacja w formie czatu z wykorzystaniem pakietu Streamlit. Interfejs umożliwi zmianę najważniejszych ustawień, aby móc porównać różne metody i strategie. Po przesłaniu zapytania, aplikacja będzie zwracała odpowiedź wraz z dokładnym odwołaniem do źródła.
