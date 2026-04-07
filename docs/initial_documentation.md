@@ -69,8 +69,8 @@ W projekcie zostanie przygotowany pipeline przetwarzania dokumentów obejmujący
 Pipeline RAG dotyczy etapów prowadzących od analizy zapytania (promptu) do wygenerowania odpowiedzi na podstawie kontekstu z bazy wektorowej. Główne etapy przetwarzania obejmują:
 - query understanding - doprecyzowanie treści zapytania, zostanie zaimplementowana strategia rewriting, która przeredaguje zapytanie użytkownika na bardziej formalną wersję odpowiadającą dokumentom prawnym,
 - retrieval - pobranie trafnych fragmentów kontekstu z bazy wektorowej za pomocą wyszukiwania semantycznego,
-- reranking - uporządkowanie wyników wyszukiwania, dostępne będą dwie opcje: jedna zachowująca domyślną kolejność fragmentów i druga korzystająca z metody "U-shaped",
-- context compression - skrócenie kontekstu do kluczowych treści zgodnie z wybranymi metodami. Zostanie zaimplementowana metoda filtru ekstrakcyjnego, który usuwa nieistotne fragmenty tekstu oraz metoda hierarchiczna, która podsumowuje każdy chunk, a następnie agreguje do jednego streszczenia,
+- reranking - uporządkowanie wyników wyszukiwania, dostępne będą dwie opcje: jedna zachowująca domyślną kolejność fragmentów i druga korzystająca z metody "U-shaped", która stanowi jednocześnie metodę mitygacji zjawiska "lost-in-the-middle",
+- context compression - skrócenie kontekstu do kluczowych treści zgodnie z wybranymi metodami. Zostanie zaimplementowana metoda filtru ekstrakcyjnego, który usuwa nieistotne fragmenty tekstu oraz metoda hierarchiczna, która podsumowuje każdy chunk, a następnie agreguje do jednego streszczenia. Opcjonalnie zostanie zaimplementowane również podejście map-reduce inspirowane BriefContext, które dzieli pobrane fragmenty na partycje, generuje odpowiedź dla każdej z nich osobno, a następnie agreguje wyniki - stanowi to dodatkową metodę mitygacji zjawiska "lost-in-the-middle", 
 - generation - moduł, który buduje finalny kontekst oraz odpytuje model LLM na podstawie zdefiniowanego promptu systemowego, który wymusza odpowiedź ściśle bazującą na przesłanym kontekście.
 
 Analogiczne zdefiniowanie kolejnych kroków i metod prowadzących do wygenerowania najlepszej odpowiedzi zostało przedstawione w schemacie "Rewrite-Retrieve-Read" [3].
@@ -81,7 +81,7 @@ Dodatkowo zostanie zastosowana metoda semantic cache, która będzie optymalizow
 Zostanie przygotowana aplikacja w formie czatu z wykorzystaniem pakietu Streamlit. Interfejs umożliwi zmianę najważniejszych ustawień, aby móc porównać różne metody i strategie. Po przesłaniu zapytania, aplikacja będzie zwracała odpowiedź wraz z dokładnym odwołaniem do źródła.
 
 ### 5. Plan eksperymentów i ewaluacji
-Istotnym elementem projektu będzie porównanie zaimplementowanych metod w celu zbadania ich wpływu na jakość generowanych odpowiedzi. Ewaluacja będzie skupiona na jakości odpowiedzi oraz aspektach praktycznych, takich jak stabilność działania na dłuższym kontekście, czas odpowiedzi i koszt przetwarzania.
+Istotnym elementem projektu będzie porównanie zaimplementowanych metod w celu zbadania ich wpływu na jakość generowanych odpowiedzi. Zestaw testowy zostanie przygotowany ręcznie na podstawie wiedzy eksperckiej z dziedziny prawa energetycznego, bez zdefiniowanych poprawnych odpowiedzi - ocena jakości będzie opierać się na metodzie "LLM-as-a-Judge", gdzie model językowy ocenia trafność, kompletność i zgodność odpowiedzi z dostarczonymi fragmentami kontekstu. Ewaluacja będzie skupiona na jakości odpowiedzi mierzonej metrykami takimi jak faithfulness i answer relevance, oraz aspektach praktycznych, takich jak stabilność działania na dłuższym kontekście, czas odpowiedzi i koszt przetwarzania. Dodatkowo zostanie przeprowadzony kontrolowany eksperyment badający zjawisko "lost-in-the-middle", polegający na umieszczaniu kluczowego fragmentu na różnych pozycjach w kontekście i mierzeniu wpływu tej pozycji na jakość odpowiedzi.
 
 ## Wykorzystane technologie
 
