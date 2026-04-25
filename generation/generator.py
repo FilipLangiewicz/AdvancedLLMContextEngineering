@@ -19,6 +19,7 @@ class GeneratorResponse:
     answer: str
     sources: List[dict] = field(default_factory=list)
     strategy: str = ""
+    context_text: str = ""
 
 def _build_context(docs: List[Document]) -> str:
     parts = []
@@ -69,4 +70,5 @@ class Generator:
             answer=response.content,
             sources=sources,
             strategy=strategy,
+            context_text=context,
         )
