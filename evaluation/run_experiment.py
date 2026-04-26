@@ -83,29 +83,97 @@ CONFIGS = [
 ]
 
 
+FIELDNAMES = [
+    "config", "question_id", "category", "question",
+    "answer", "strategy", "latency_s",
+    "n_sources", "context_tokens", "answer_tokens",
+    "faithfulness", "faith_explanation",
+    "relevance", "rel_explanation",
+    "completeness", "comp_explanation",
+    "context_has_answer",
+]
+
+
+def load_completed() -> set[tuple[str, str]]:
+    """Returns set of (config, question_id) pairs that already have valid results in CSV.
+    Failed rows (faithfulness=0 or answer starts with ERROR) are NOT counted as completed,
+    so they will be retried."""
+    if not OUTPUT_PATH.exists():
+        return set()
+    completed = set()
+    with open(OUTPUT_PATH, encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            answer = row.get("answer", "")
+            try:
+                faith = int(row.get("faithfulness", 0))
+            except ValueError:
+                faith = 0
+            if faith == 0 or answer.startswith("ERROR"):
+                continue
+            completed.add((row["config"], row["question_id"]))
+    return completed
+
+
+def remove_failed_rows() -> int:
+    """Rewrites CSV without failed rows. Returns number of rows removed."""
+    if not OUTPUT_PATH.exists():
+        return 0
+    with open(OUTPUT_PATH, encoding="utf-8") as f:
+        rows = list(csv.DictReader(f))
+    
+    valid_rows = []
+    removed = 0
+    for row in rows:
+        answer = row.get("answer", "")
+        try:
+            faith = int(row.get("faithfulness", 0))
+        except ValueError:
+            faith = 0
+        if faith == 0 or answer.startswith("ERROR"):
+            removed += 1
+            continue
+        valid_rows.append(row)
+    
+    if removed > 0:
+        with open(OUTPUT_PATH, "w", encoding="utf-8", newline="") as f:
+            writer = csv.DictWriter(f, fieldnames=FIELDNAMES)
+            writer.writeheader()
+            writer.writerows(valid_rows)
+    
+    return removed
+
+
 def main():
+    removed = remove_failed_rows()
+    if removed > 0:
+        logger.info(f"Usunięto {removed} błędnych wierszy z poprzednich uruchomień")
+    
+    completed = load_completed()
+    if completed:
+        logger.info(f"Znaleziono {len(completed)} ukończonych par (config, question) — pomijam je")
+    
+    file_exists = OUTPUT_PATH.exists() and OUTPUT_PATH.stat().st_size > 0
+    
     logger.info("Inicjalizacja embeddings i judge'a")
     embeddings = build_embeddings()
     judge_llm = build_llm(provider=JUDGE_PROVIDER, model=JUDGE_MODEL)
     judge = LLMJudge(judge_llm)
 
-    fieldnames = [
-        "config", "question_id", "category", "question",
-        "answer", "strategy", "latency_s",
-        "n_sources", "context_tokens", "answer_tokens",
-        "faithfulness", "faith_explanation",
-        "relevance", "rel_explanation",
-        "completeness", "comp_explanation",
-        "context_has_answer",
-    ]
-
-    with open(OUTPUT_PATH, "w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
+    mode = "a" if file_exists else "w"
+    with open(OUTPUT_PATH, mode, encoding="utf-8", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=FIELDNAMES)
+        if not file_exists:
+            writer.writeheader()
 
         for config in CONFIGS:
             label = config["label"]
-            logger.info(f"\n{'='*70}\nKonfiguracja: {label}\n{'='*70}")
+            
+            pending = [q for q in TEST_QUESTIONS if (label, q.id) not in completed]
+            if not pending:
+                logger.info(f"Konfiguracja {label} już ukończona — pomijam")
+                continue
+            
+            logger.info(f"\n{'='*70}\nKonfiguracja: {label} | pozostało: {len(pending)}/{len(TEST_QUESTIONS)} pytań\n{'='*70}")
 
             pipeline = build_pipeline(
                 embeddings=embeddings,
@@ -116,7 +184,7 @@ def main():
                 with_cache=False,
             )
 
-            for q in TEST_QUESTIONS:
+            for q in pending:
                 logger.info(f"  [{q.id}] {q.question[:70]}")
                 try:
                     start = time.time()
@@ -180,7 +248,6 @@ def main():
                     })
                     f.flush()
 
-                # Pauza między pytaniami — łagodzi 429 z Groqa
                 time.sleep(INTER_QUERY_SLEEP)
 
     logger.info(f"\nGotowe. Wyniki: {OUTPUT_PATH}")
@@ -188,13 +255,17 @@ def main():
 
 
 def print_summary():
-    """Wypisuje krótkie podsumowanie wyników per konfiguracja."""
-
     sums = defaultdict(lambda: {"f": 0, "r": 0, "c": 0, "lat": 0.0, "ctx": 0, "ans": 0, "n": 0})
     with open(OUTPUT_PATH, encoding="utf-8") as f:
         for row in csv.DictReader(f):
+            try:
+                faith = int(row["faithfulness"])
+            except ValueError:
+                faith = 0
+            if faith == 0 or row["answer"].startswith("ERROR"):
+                continue  # skip failed rows in summary
             cfg = row["config"]
-            sums[cfg]["f"] += int(row["faithfulness"])
+            sums[cfg]["f"] += faith
             sums[cfg]["r"] += int(row["relevance"])
             sums[cfg]["c"] += int(row["completeness"])
             sums[cfg]["lat"] += float(row["latency_s"])
@@ -203,14 +274,16 @@ def print_summary():
             sums[cfg]["n"] += 1
 
     print(f"\n{'='*88}")
-    print(f"{'Config':<18} {'Faith':>7} {'Rel':>7} {'Comp':>7} {'Lat[s]':>9} {'CtxTok':>9} {'AnsTok':>9}")
+    print(f"{'Config':<18} {'Faith':>7} {'Rel':>7} {'Comp':>7} {'Lat[s]':>9} {'CtxTok':>9} {'AnsTok':>9}  N")
     print('-' * 88)
     for cfg, s in sums.items():
         n = s["n"]
+        if n == 0:
+            continue
         print(
             f"{cfg:<18} "
             f"{s['f']/n:>7.2f} {s['r']/n:>7.2f} {s['c']/n:>7.2f} "
-            f"{s['lat']/n:>9.2f} {s['ctx']/n:>9.0f} {s['ans']/n:>9.0f}"
+            f"{s['lat']/n:>9.2f} {s['ctx']/n:>9.0f} {s['ans']/n:>9.0f}  {n}"
         )
     print('=' * 88)
 
