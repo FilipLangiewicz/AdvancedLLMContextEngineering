@@ -80,6 +80,13 @@ CONFIGS = [
         "compression": CompressionStrategy.HIERARCHICAL_SUMMARY,
         "query_understanding": QueryUnderstandingStrategy.REWRITING,
     },
+    {
+        "label": "brief_context",
+        "chunking": ChunkingStrategy.STRUCTURE,
+        "reranking": RerankingStrategy.ORIGINAL_ORDER,
+        "compression": CompressionStrategy.BRIEF_CONTEXT,
+        "query_understanding": None,
+    }
 ]
 
 
@@ -87,6 +94,7 @@ FIELDNAMES = [
     "config", "question_id", "category", "question",
     "answer", "strategy", "latency_s",
     "n_sources", "context_tokens", "answer_tokens",
+    "context_text",
     "faithfulness", "faith_explanation",
     "relevance", "rel_explanation",
     "completeness", "comp_explanation",
@@ -215,6 +223,7 @@ def main():
                         "completeness": judge_result.completeness,
                         "comp_explanation": judge_result.completeness_explanation,
                         "context_has_answer": judge_result.context_has_answer,
+                        "context_text": response.context_text,
                     }
                     writer.writerow(row)
                     f.flush()
@@ -245,6 +254,7 @@ def main():
                         "completeness": 0,
                         "comp_explanation": f"ERROR: {e}",
                         "context_has_answer": None,
+                        "context_text": None,
                     })
                     f.flush()
 
