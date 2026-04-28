@@ -1,0 +1,181 @@
+question_id,question,mitigation,key_position,actual_key_idx_in_retrieval,answer,answer_tokens,faithfulness,relevance,completeness,comp_explanation,context_has_answer,latency_s
+S1,Jakie koszty przyjąć do kalkulacji taryfy dla ciepła?,no_mitigation,0,8,"Zgodnie z § 21 ust. 1, koszty stanowiące podstawę do obliczenia stawek opłat obejmują:
+
+1. uzasadnione koszty stałe i koszty zmienne:
+ * wytwarzania, przetwarzania i magazynowania ciepła,
+ * pozyskania, uzdatniania i podgrzewania nośnika ciepła,
+ * przesyłania i dystrybucji ciepła;
+2. planowane uzasadnione roczne koszty modernizacji, rozwoju i ochrony środowiska;
+3. planowane uzasadnione koszty związane z:
+ * utrzymaniem zapasów paliw,
+ * handlową obsługą odbiorców.
+
+Nie znalazłem informacji o innych kosztach, które należy uwzględnić w kalkulacji taryfy dla ciepła.",77,5,5,5,"Odpowiedź jest pełna, ponieważ precyzyjnie wymienia wszystkie koszty stanowiące podstawę do obliczenia stawek opłat, zgodnie z § 21 ust. 1. Model poprawnie zacytował i ustrukturyzował informacje z dostarczonego kontekstu.",True,1.07
+S1,Jakie koszty przyjąć do kalkulacji taryfy dla ciepła?,no_mitigation,2,8,"Zgodnie z § 21 ust. 1, koszty stanowiące podstawę do obliczenia stawek opłat obejmują:
+
+1. uzasadnione koszty stałe i koszty zmienne:
+ * wytwarzania, przetwarzania i magazynowania ciepła,
+ * pozyskania, uzdatniania i podgrzewania nośnika ciepła,
+ * przesyłania i dystrybucji ciepła;
+2. planowane uzasadnione roczne koszty modernizacji, rozwoju i ochrony środowiska;
+3. planowane uzasadnione koszty związane z:
+ * utrzymaniem zapasów paliw,
+ * handlową obsługą odbiorców.
+
+(§ 21 ust. 1)",67,5,5,5,"Odpowiedź jest pełna, ponieważ precyzyjnie wymienia wszystkie koszty stanowiące podstawę do obliczenia stawek opłat, zgodnie z § 21 ust. 1 dostarczonego kontekstu. Podano konkretne kategorie kosztów, takie jak koszty stałe i zmienne wytwarzania, pozyskania, przesyłania i dystrybucji, a także koszty modernizacji, rozwoju, ochrony środowiska, utrzymania zapasów paliw i obsługi odbiorców.",True,0.77
+S1,Jakie koszty przyjąć do kalkulacji taryfy dla ciepła?,no_mitigation,4,8,"Zgodnie z § 21 ust. 1, koszty stanowiące podstawę do obliczenia stawek opłat obejmują:
+
+1. uzasadnione koszty stałe i koszty zmienne:
+ * wytwarzania, przetwarzania i magazynowania ciepła,
+ * pozyskania, uzdatniania i podgrzewania nośnika ciepła,
+ * przesyłania i dystrybucji ciepła;
+2. planowane uzasadnione roczne koszty modernizacji, rozwoju i ochrony środowiska;
+3. planowane uzasadnione koszty związane z:
+ * utrzymaniem zapasów paliw,
+ * handlową obsługą odbiorców.
+
+(§ 21, dokument2.pdf, strona 9)",68,5,5,5,"Odpowiedź jest kompletna, ponieważ precyzyjnie wymienia wszystkie koszty stanowiące podstawę do obliczenia stawek opłat, zgodnie z § 21 ust. 1 dokumentu 2.pdf. Podano również dokładne odniesienie do źródła informacji.",True,0.78
+S1,Jakie koszty przyjąć do kalkulacji taryfy dla ciepła?,no_mitigation,6,8,"Zgodnie z § 21 ust. 1, koszty stanowiące podstawę do obliczenia stawek opłat obejmują:
+
+1. Uzasadnione koszty stałe i koszty zmienne:
+ * wytwarzania, przetwarzania i magazynowania ciepła,
+ * pozyskania, uzdatniania i podgrzewania nośnika ciepła,
+ * przesyłania i dystrybucji ciepła;
+2. Planowane uzasadnione roczne koszty modernizacji, rozwoju i ochrony środowiska;
+3. Planowane uzasadnione koszty związane z:
+ * utrzymaniem zapasów paliw,
+ * handlową obsługą odbiorców.
+
+Ponadto, zgodnie z § 20, cenę nośnika ciepła oblicza się jako iloraz planowanych dla pierwszego roku stosowania taryfy kosztów z uwzględnieniem uzasadnionego zwrotu z kapitału zaangażowanego w wykonywaną działalność gospodarczą związaną z wytwarzaniem ciepła oraz planowanej ilości nośnika ciepła dostarczanego do sieci ciepłowniczych.",106,5,5,5,"Odpowiedź jest pełna i precyzyjnie odpowiada na pytanie, wykorzystując informacje z podanych fragmentów dokumentów. Wymienia konkretne kategorie kosztów, które stanowią podstawę do kalkulacji taryfy, powołując się na odpowiednie paragrafy.",True,3.05
+S1,Jakie koszty przyjąć do kalkulacji taryfy dla ciepła?,no_mitigation,9,8,"Zgodnie z § 21 ust. 1, koszty stanowiące podstawę do obliczenia stawek opłat obejmują:
+
+1. Uzasadnione koszty stałe i koszty zmienne:
+ * wytwarzania, przetwarzania i magazynowania ciepła,
+ * pozyskania, uzdatniania i podgrzewania nośnika ciepła,
+ * przesyłania i dystrybucji ciepła;
+2. Planowane uzasadnione roczne koszty modernizacji, rozwoju i ochrony środowiska;
+3. Planowane uzasadnione koszty związane z:
+ * utrzymaniem zapasów paliw,
+ * handlową obsługą odbiorców.
+
+(§ 21, dokument2.pdf, strona 9)",68,5,5,5,"Odpowiedź jest w pełni kompletna, ponieważ precyzyjnie wymienia wszystkie koszty stanowiące podstawę do kalkulacji taryfy dla ciepła, zgodnie z § 21 ust. 1 dokumentu 2.pdf. Wszystkie istotne informacje z kontekstu zostały wykorzystane.",True,19.03
+S1,Jakie koszty przyjąć do kalkulacji taryfy dla ciepła?,u_shape,0,8,"Zgodnie z § 21 ust. 1, koszty stanowiące podstawę do obliczenia stawek opłat dla ciepła obejmują:
+
+1. uzasadnione koszty stałe i koszty zmienne:
+   a) wytwarzania, przetwarzania i magazynowania ciepła,
+   b) pozyskania, uzdatniania i podgrzewania nośnika ciepła,
+   c) przesyłania i dystrybucji ciepła;
+2. planowane uzasadnione roczne koszty modernizacji, rozwoju i ochrony środowiska;
+3. planowane uzasadnione koszty związane z:
+   a) utrzymaniem zapasów paliw,
+   b) handlową obsługą odbiorców.
+
+Zatem, do kalkulacji taryfy dla ciepła należy przyjąć powyższe koszty.",75,5,5,5,"Odpowiedź jest w pełni kompletna, ponieważ precyzyjnie wymienia wszystkie koszty, które należy przyjąć do kalkulacji taryfy dla ciepła, zgodnie z § 21 ust. 1 dokumentu [1].",True,16.29
+S1,Jakie koszty przyjąć do kalkulacji taryfy dla ciepła?,u_shape,2,8,"Zgodnie z § 21 ust. 1, koszty stanowiące podstawę do obliczenia stawek opłat obejmują:
+
+1. uzasadnione koszty stałe i koszty zmienne:
+   a) wytwarzania, przetwarzania i magazynowania ciepła,
+   b) pozyskania, uzdatniania i podgrzewania nośnika ciepła,
+   c) przesyłania i dystrybucji ciepła;
+2. planowane uzasadnione roczne koszty modernizacji, rozwoju i ochrony środowiska;
+3. planowane uzasadnione koszty związane z:
+   a) utrzymaniem zapasów paliw,
+   b) handlową obsługą odbiorców.",63,5,5,5,"Odpowiedź jest kompletna, ponieważ precyzyjnie wymienia wszystkie kategorie kosztów stanowiące podstawę do obliczenia stawek opłat, zgodnie z § 21 ust. 1 dokumentu [2].",True,16.89
+S1,Jakie koszty przyjąć do kalkulacji taryfy dla ciepła?,u_shape,4,8,"Zgodnie z § 21 ust. 1, koszty stanowiące podstawę do obliczenia stawek opłat obejmują:
+
+1. uzasadnione koszty stałe i koszty zmienne:
+   a) wytwarzania, przetwarzania i magazynowania ciepła,
+   b) pozyskania, uzdatniania i podgrzewania nośnika ciepła,
+   c) przesyłania i dystrybucji ciepła;
+2. planowane uzasadnione roczne koszty modernizacji, rozwoju i ochrony środowiska;
+3. planowane uzasadnione koszty związane z:
+   a) utrzymaniem zapasów paliw,
+   b) handlową obsługą odbiorców.
+
+(§ 21 ust. 1)",67,5,5,5,"Odpowiedź jest w pełni kompletna, ponieważ precyzyjnie wymienia wszystkie kategorie kosztów stanowiących podstawę do kalkulacji taryfy dla ciepła, zgodnie z § 21 ust. 1 dokumentu [3].",True,16.09
+S1,Jakie koszty przyjąć do kalkulacji taryfy dla ciepła?,u_shape,6,8,"Zgodnie z § 21 ust. 1 dokumentu2.pdf, koszty stanowiące podstawę do obliczenia stawek opłat obejmują:
+
+1. uzasadnione koszty stałe i koszty zmienne:
+   a) wytwarzania, przetwarzania i magazynowania ciepła,
+   b) pozyskania, uzdatniania i podgrzewania nośnika ciepła,
+   c) przesyłania i dystrybucji ciepła;
+2. planowane uzasadnione roczne koszty modernizacji, rozwoju i ochrony środowiska;
+3. planowane uzasadnione koszty związane z:
+   a) utrzymaniem zapasów paliw,
+   b) handlową obsługą odbiorców.",64,5,5,5,"Odpowiedź jest w pełni kompletna, ponieważ precyzyjnie wymienia wszystkie koszty stanowiące podstawę do obliczenia stawek opłat, zgodnie z § 21 ust. 1 dokumentu2.pdf. Wszystkie wymienione elementy są obecne w dostarczonym kontekście.",True,16.87
+S1,Jakie koszty przyjąć do kalkulacji taryfy dla ciepła?,u_shape,9,8,"Zgodnie z § 21.1, koszty stanowiące podstawę do obliczenia stawek opłat obejmują:
+
+1. uzasadnione koszty stałe i koszty zmienne:
+   a) wytwarzania, przetwarzania i magazynowania ciepła,
+   b) pozyskania, uzdatniania i podgrzewania nośnika ciepła,
+   c) przesyłania i dystrybucji ciepła;
+2. planowane uzasadnione roczne koszty modernizacji, rozwoju i ochrony środowiska;
+3. planowane uzasadnione koszty związane z:
+   a) utrzymaniem zapasów paliw,
+   b) handlową obsługą odbiorców.",61,5,5,5,"Odpowiedź jest w pełni kompletna, ponieważ precyzyjnie wymienia wszystkie kategorie kosztów stanowiące podstawę do kalkulacji taryfy dla ciepła, zgodnie z § 21 ust. 1 dokumentu [6].",True,16.89
+S1,Jakie koszty przyjąć do kalkulacji taryfy dla ciepła?,brief_context,0,8,"Do kalkulacji taryfy dla ciepła należy przyjąć koszty, o których mowa w § 21 ust. 1, tj. uzasadnione koszty stałe i koszty zmienne związane z wytwarzaniem, przetwarzaniem i magazynowaniem ciepła, pozyskaniem, uzdatnianiem i podgrzewaniem nośnika ciepła, przesyłaniem i dystrybucją ciepła, a także planowane uzasadnione roczne koszty modernizacji, rozwoju i ochrony środowiska, oraz koszty związane z utrzymaniem zapasów paliw i handlową obsługą odbiorców. W szczególności, należy przyjąć następujące koszty: opłatę za ciepło, opłatę za zamówioną moc cieplną, opłatę za usługi przesyłowe, opłatę za obsługę odbiorców oraz opłatę za nośnik ciepła.",89,5,5,5,"Odpowiedź w pełni wykorzystuje informacje zawarte w kontekście, precyzyjnie wymieniając wszystkie rodzaje kosztów, które należy uwzględnić przy kalkulacji taryfy dla ciepła, zgodnie z podanymi paragrafami i artykułami.",True,0.74
+S1,Jakie koszty przyjąć do kalkulacji taryfy dla ciepła?,brief_context,2,8,"Do kalkulacji taryfy dla ciepła należy przyjąć następujące koszty:
+
+* uzasadnione koszty stałe i koszty zmienne:
+  * wytwarzania, przetwarzania i magazynowania ciepła, 
+  * pozyskania, uzdatniania i podgrzewania nośnika ciepła, 
+  * przesyłania i dystrybucji ciepła (§ 21 ust. 1 pkt 1);
+* planowane uzasadnione roczne koszty modernizacji, rozwoju i ochrony środowiska (§ 21 ust. 1 pkt 2);
+* planowane uzasadnione koszty związane z: 
+  * utrzymaniem zapasów paliw, 
+  * handlową obsługą odbiorców (§ 21 ust. 1 pkt 3);
+* koszty określone w art. 45 ust. 1 pkt 1, 1b i 3 oraz w przepisach wydanych na podstawie art. 46 ust. 5 i 6;
+* opłatę za ciepło, 
+* opłatę za nośnik ciepła, 
+* opłatę stałą za usługi przesyłowe, 
+* opłatę zmienną za usługi przesyłowe, 
+* opłatę za obsługę odbiorców, zgodnie z § 33, punktach 1-6.",133,5,5,5,"Odpowiedź jest w pełni kompletna, ponieważ zawiera wszystkie istotne informacje z dostarczonego kontekstu dotyczące kosztów przyjmowanych do kalkulacji taryfy dla ciepła. Model precyzyjnie wymienia wszystkie kategorie kosztów i odwołuje się do odpowiednich przepisów.",True,0.8
+S1,Jakie koszty przyjąć do kalkulacji taryfy dla ciepła?,brief_context,4,8,"Do kalkulacji taryfy dla ciepła należy przyjąć koszty określone w § 20, § 21 ust. 1 oraz § 3, które obejmują m.in. koszty związane z wytwarzaniem, przesyłaniem i dystrybucją ciepła, modernizacją, rozwojem i ochroną środowiska, utrzymaniem zapasów paliw, handlową obsługą odbiorców oraz opłaty za ciepło, nośnik ciepła i usługi przesyłowe.",50,5,5,5,"Odpowiedź jest pełna, ponieważ zawiera wszystkie kluczowe elementy wymienione w kontekście, dotyczące kosztów przyjmowanych do kalkulacji taryfy dla ciepła. Model precyzyjnie odnosi się do wskazanych paragrafów i wymienia główne kategorie kosztów.",True,0.52
+S1,Jakie koszty przyjąć do kalkulacji taryfy dla ciepła?,brief_context,6,8,"Do kalkulacji taryfy dla ciepła należy przyjąć koszty określone w § 20, § 21 ust. 1 oraz § 3, które obejmują m.in. koszty związane z wytwarzaniem, przetwarzaniem, magazynowaniem, przesyłaniem i dystrybucją ciepła, a także koszty modernizacji, rozwoju i ochrony środowiska, oraz opłaty za ciepło, nośnik ciepła, zamówioną moc cieplną i usługi przesyłowe.",52,5,5,4,"Odpowiedź jest w większości pełna, ponieważ wymienia kluczowe kategorie kosztów, które należy przyjąć do kalkulacji taryfy dla ciepła. Brakuje jednak wymienienia wszystkich szczegółowych opłat, które są wymienione w kontekście.",True,0.52
+S1,Jakie koszty przyjąć do kalkulacji taryfy dla ciepła?,brief_context,9,8,"Do kalkulacji taryfy dla ciepła należy przyjąć koszty, o których mowa w § 20, § 21, ust. 1, oraz § 3, ust. 1, które obejmują:
+
+- koszty z uwzględnieniem uzasadnionego zwrotu z kapitału zaangażowanego w wykonywaną działalność gospodarczą związaną z wytwarzaniem ciepła,
+- ceny za zamówioną moc cieplną,
+- ceny ciepła,
+- ceny nośnika ciepła – wody,
+- stawki opłat stałych za usługi przesyłowe,
+- stawki opłat zmiennych za usługi przesyłowe,
+- uzasadnione koszty stałe i koszty zmienne związane z wytwarzaniem, przetwarzaniem, magazynowaniem, pozyskaniem, uzdatnianiem, podgrzewaniem i przesyłaniem ciepła,
+- planowane uzasadnione roczne koszty modernizacji, rozwoju i ochrony środowiska,
+- planowane uzasadnione koszty związane z utrzymaniem zapasów paliw i handlową obsługą odbiorców.",112,5,5,5,"Odpowiedź jest pełna i wyczerpująca, ponieważ zawiera wszystkie kluczowe informacje z dostarczonego kontekstu dotyczące kosztów przyjmowanych do kalkulacji taryfy dla ciepła. Model precyzyjnie wymienia wszystkie wymienione w tekście kategorie kosztów.",True,0.81
+S2,Jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła?,no_mitigation,0,3,"Nie znalazłem tej informacji w dostarczonych dokumentach. Dokumenty zawierają informacje o sposobie obliczania stawek opłat i cen ciepła, ale nie zawierają informacji o ocenie kosztów uzasadnionych przyjętych do taryfy dla ciepła.",31,5,1,1,"Kontekst zawiera szczegółowe informacje na temat tego, jakie koszty są uwzględniane przy obliczaniu stawek opłat taryfowych dla ciepła, w tym koszty stałe i zmienne wytwarzania, przesyłania, dystrybucji, modernizacji, rozwoju, ochrony środowiska, utrzymania zapasów paliw oraz obsługi odbiorców. Model błędnie stwierdził, że takich informacji nie znalazł.",True,0.73
+S2,Jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła?,no_mitigation,2,3,Nie znalazłem tej informacji w dokumentach.,6,5,5,1,Kontekst nie zawiera informacji na temat sposobu oceny kosztów uzasadnionych przyjmowanych do taryfy dla ciepła. Model poprawnie odmówił odpowiedzi.,False,0.51
+S2,Jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła?,no_mitigation,4,3,Nie znalazłem tej informacji w dokumentach.,6,5,5,1,"Model odmówił odpowiedzi, mimo że kontekst zawierał informacje dotyczące kosztów stanowiących podstawę do obliczenia stawek opłat w taryfie dla ciepła, w tym koszty wytwarzania, przesyłania, dystrybucji, modernizacji, rozwoju, ochrony środowiska, utrzymania zapasów paliw oraz obsługi odbiorców.",False,0.51
+S2,Jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła?,no_mitigation,6,3,Nie znalazłem tej informacji w dokumentach.,6,5,1,1,"Kontekst zawiera informacje dotyczące kosztów stanowiących podstawę do obliczenia stawek opłat za ciepło, w tym koszty wytwarzania, przesyłania i dystrybucji, a także koszty modernizacji i obsługi odbiorców. Model błędnie stwierdził brak informacji.",True,12.58
+S2,Jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła?,brief_context,2,3,"Koszty uzasadnione przyjęte do taryfy dla ciepła obejmują koszty stałe i zmienne związane z wytwarzaniem, przetwarzaniem, magazynowaniem, przesyłaniem i dystrybucją ciepła, a także planowane koszty modernizacji, rozwoju, ochrony środowiska, utrzymania zapasów paliw i handlowej obsługi odbiorców (§ 21 ust. 1).",40,5,5,5,"Odpowiedź jest pełna, ponieważ zawiera wszystkie kluczowe elementy wymienione w kontekście, precyzyjnie opisując składniki kosztów uzasadnionych w taryfie dla ciepła, wraz z odniesieniem do konkretnego przepisu.",True,0.52
+S2,Jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła?,no_mitigation,9,3,"Koszty uzasadnione przyjęte do taryfy dla ciepła obejmują koszty stałe i zmienne związane z wytwarzaniem, przetwarzaniem i magazynowaniem ciepła, pozyskaniem, uzdatnianiem i podgrzewaniem nośnika ciepła, przesyłaniem i dystrybucją ciepła, a także planowane uzasadnione roczne koszty modernizacji, rozwoju i ochrony środowiska oraz koszty związane z utrzymaniem zapasów paliw i handlową obsługą odbiorców (§ 21 ust. 1 i 3).",57,5,5,5,"Odpowiedź jest pełna i precyzyjnie odpowiada na pytanie, wykorzystując informacje zawarte w dostarczonym kontekście, w tym konkretne odniesienia do paragrafów i punktów.",True,1.21
+S2,Jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła?,u_shape,0,3,Nie znalazłem tej informacji w dokumentach.,6,5,5,1,"Kontekst zawiera szczegółowe informacje na temat kosztów, które stanowią podstawę do obliczenia stawek opłat za ciepło, w tym koszty stałe i zmienne wytwarzania, przesyłania i dystrybucji, a także koszty modernizacji i rozwoju. Model błędnie stwierdził brak informacji.",True,0.44
+S2,Jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła?,u_shape,2,3,"Nie znalazłem w dostarczonych dokumentach informacji, która wprost odpowiada na pytanie, jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła. Jednak w § 21 ust. 1 dokumentu2.pdf, strona 9, jest mowa o tym, że koszty stanowiące podstawę do obliczenia stawek opłat obejmują uzasadnione koszty stałe i koszty zmienne, planowane uzasadnione roczne koszty modernizacji, rozwoju i ochrony środowiska oraz planowane uzasadnione koszty związane z utrzymaniem zapasów paliw i handlową obsługą odbiorców.",71,4,4,3,"Kontekst zawiera informacje pozwalające odpowiedzieć na pytanie, wymieniając składniki kosztów uzasadnionych. Odpowiedź modelu jest częściowa, ponieważ nie wyczerpuje wszystkich dostępnych informacji z kontekstu dotyczących kosztów uzasadnionych.",True,1.12
+S2,Jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła?,u_shape,4,3,"Nie znalazłem w dostarczonych dokumentach informacji, która wprost odpowiada na pytanie, jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła. Jednak w § 21 dokumentu2.pdf, strona 9, jest mowa o kosztach stanowiących podstawę do obliczenia stawek opłat, które obejmują uzasadnione koszty stałe i koszty zmienne związane z wytwarzaniem, przetwarzaniem i magazynowaniem ciepła, pozyskaniem, uzdatnianiem i podgrzewaniem nośnika ciepła, przesyłaniem i dystrybucją ciepła, a także planowane uzasadnione roczne koszty modernizacji, rozwoju i ochrony środowiska.",74,4,4,3,"Kontekst zawiera informacje dotyczące kosztów stanowiących podstawę do obliczenia stawek opłat, które obejmują koszty stałe i zmienne związane z wytwarzaniem, przesyłaniem i dystrybucją ciepła, a także koszty modernizacji i rozwoju. Odpowiedź jest częściowa, ponieważ nie precyzuje, jak te koszty są 'oceniane', a jedynie wymienia ich rodzaje.",True,0.93
+S2,Jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła?,u_shape,6,3,"Koszty uzasadnione przyjęte do taryfy dla ciepła obejmują koszty stałe i zmienne związane z wytwarzaniem, przetwarzaniem i magazynowaniem ciepła, pozyskaniem, uzdatnianiem i podgrzewaniem nośnika ciepła, przesyłaniem i dystrybucją ciepła, a także planowane uzasadnione roczne koszty modernizacji, rozwoju i ochrony środowiska oraz koszty związane z utrzymaniem zapasów paliw i handlową obsługą odbiorców (§ 21 ust. 1).",55,5,5,5,"Odpowiedź w pełni wykorzystuje informacje zawarte w kontekście, precyzyjnie wymieniając składniki kosztów uzasadnionych zgodnie z § 21 ust. 1 dokumentu [4].",True,2.38
+S2,Jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła?,u_shape,9,3,"Nie znalazłem w dostarczonych dokumentach informacji, która wprost odpowiada na pytanie, jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła. Jednak w dokumentach są wzmianki o kosztach uzasadnionych w kontekście obliczania stawek opłat i cen ciepła.
+
+W § 21 ust. 1 dokumentu [6] jest mowa o tym, że koszty stanowiące podstawę do obliczenia stawek opłat obejmują uzasadnione koszty stałe i koszty zmienne związane z wytwarzaniem, przetwarzaniem i magazynowaniem ciepła, pozyskaniem, uzdatnianiem i podgrzewaniem nośnika ciepła oraz przesyłaniem i dystrybucją ciepła.
+
+W § 20 dokumentu [9] jest opisane, jak oblicza się cenę nośnika ciepła, uwzględniając planowane koszty z uwzględnieniem uzasadnionego zwrotu z kapitału zaangażowanego w wykonywaną działalność gospodarczą związaną z wytwarzaniem ciepła.
+
+W Art. 47 dokumentu [1] jest mowa o tym, że przedsiębiorstwo energetyczne może odstąpić od sposobu kalkulacji cen i stawek opłat w taryfie dla ciepła, opracowując taryfę w sposób zapewniający pokrycie kosztów uzasadnionych.",145,4,3,3,"Kontekst zawiera informacje dotyczące kosztów uzasadnionych, które stanowią podstawę do obliczenia stawek opłat i cen ciepła. Odpowiedź częściowo wykorzystuje te informacje, ale nie przedstawia pełnego obrazu oceny kosztów uzasadnionych.",True,14.65
+S2,Jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła?,brief_context,0,3,"Koszty uzasadnione przyjęte do taryfy dla ciepła obejmują uzasadnione koszty stałe i koszty zmienne, w tym koszty wytwarzania, przetwarzania i magazynowania ciepła, pozyskania, uzdatniania i podgrzewania nośnika ciepła, przesyłania i dystrybucji ciepła, a także planowane uzasadnione roczne koszty modernizacji, rozwoju i ochrony środowiska oraz koszty związane z utrzymaniem zapasów paliw i handlową obsługą odbiorców. (§ 1)",56,5,5,5,"Odpowiedź jest pełna, ponieważ zawiera wszystkie kluczowe elementy wymienione w kontekście dotyczące kosztów uzasadnionych w taryfie dla ciepła. Model precyzyjnie wymienia wszystkie kategorie kosztów stałych i zmiennych oraz koszty planowane.",True,0.71
+S2,Jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła?,brief_context,4,3,"Koszty uzasadnione przyjęte do taryfy dla ciepła ocenia się na podstawie kosztów, o których mowa w § 20, tj. planowanych dla pierwszego roku stosowania taryfy kosztów z uwzględnieniem uzasadnionego zwrotu z kapitału zaangażowanego w wykonywaną działalność gospodarczą związaną z wytwarzaniem ciepła.",41,5,3,3,"Odpowiedź jest częściowa, ponieważ model powtarza jedynie początkową część kontekstu, nie wymieniając konkretnych kategorii kosztów, które są istotne dla oceny kosztów uzasadnionych.",True,0.45
+S2,Jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła?,brief_context,6,3,"Koszty uzasadnione przyjęte do taryfy dla ciepła ocenia się na podstawie planowanych kosztów z uwzględnieniem uzasadnionego zwrotu z kapitału zaangażowanego w wykonywaną działalność gospodarczą związaną z wytwarzaniem ciepła, jak również na podstawie kosztów dostarczania ciepła z danego źródła ciepła (§ 20).",41,5,5,3,"Odpowiedź jest częściowa, ponieważ model podał tylko ogólne zasady oceny kosztów uzasadnionych, pomijając szczegółowy ich podział na koszty stałe, zmienne, modernizacji, rozwoju, ochrony środowiska, utrzymania zapasów paliw i obsługi odbiorców, które są zawarte w kontekście.",True,0.4
+S2,Jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła?,brief_context,9,3,"Koszty uzasadnione przyjęte do taryfy dla ciepła ocenia się na podstawie planowanych kosztów z uwzględnieniem uzasadnionego zwrotu z kapitału zaangażowanego w wykonywaną działalność gospodarczą związaną z wytwarzaniem ciepła, jak również na podstawie kosztów dostarczania ciepła z danego źródła ciepła (§ 20).",41,5,5,3,"Odpowiedź jest częściowa, ponieważ model wymienił tylko ogólne zasady oceny kosztów uzasadnionych, pomijając szczegółowy katalog tych kosztów, który jest obecny w kontekście.",True,0.48
+L3,Czy spółka dostarczająca ciepło odbiorcom musi stosować bonifikatę gdy występuje awaria sieci?,no_mitigation,0,3,"Nie znalazłem informacji w dokumentach, które wprost odnosiłyby się do obowiązku stosowania bonifikaty w przypadku awarii sieci. Jednak w § 39 dokumentu 2.pdf jest mowa o bonifikatach w przypadku niedotrzymania przez przedsiębiorstwo energetyczne warunków umowy sprzedaży ciepła, w tym terminów rozpoczęcia i zakończenia dostarczania ciepła oraz planowanych przerw w dostarczaniu ciepła. Można więc wnioskować, że jeśli awaria sieci spowoduje niedotrzymanie tych warunków, odbiorcy mogą być uprawnieni do bonifikaty.",68,4,4,3,"Kontekst zawiera informacje o bonifikatach za niedotrzymanie terminów dostarczania ciepła i planowane przerwy, co można pośrednio powiązać z awarią sieci. Jednakże, nie ma bezpośredniego wskazania na bonifikatę w przypadku awarii sieci.",True,1.02
+L3,Czy spółka dostarczająca ciepło odbiorcom musi stosować bonifikatę gdy występuje awaria sieci?,no_mitigation,2,3,"Nie znalazłem informacji w dokumentach, które wprost odnosiłyby się do obowiązku stosowania bonifikaty w przypadku awarii sieci. Jednak w § 39 dokumentu2.pdf, jest mowa o bonifikatach w przypadku niedotrzymania przez przedsiębiorstwo energetyczne warunków umowy sprzedaży ciepła lub umowy o świadczenie usług przesyłania lub dystrybucji albo umowy kompleksowej, w zakresie terminów rozpoczęcia i zakończenia dostarczania ciepła w celu ogrzewania oraz planowanych przerw w dostarczaniu ciepła w okresie letnim. Nie jest wyraźnie określone, czy awaria sieci jest objęta tymi przypadkami.",78,4,4,3,"Kontekst zawiera informacje o bonifikatach (§ 39), ale nie precyzuje, czy awaria sieci jest podstawą do ich zastosowania. Odpowiedź modelu jest częściowa, ponieważ wskazuje na istniejące przepisy o bonifikatach, ale nie rozstrzyga kwestii awarii.",True,1.03
+L3,Czy spółka dostarczająca ciepło odbiorcom musi stosować bonifikatę gdy występuje awaria sieci?,no_mitigation,4,3,"Nie znalazłem informacji w dokumentach, które wprost odnosiłyby się do obowiązku stosowania bonifikaty w przypadku awarii sieci. Jednak w § 39 dokumentu2.pdf, strona 19, jest mowa o bonifikatach w przypadku niedotrzymania przez przedsiębiorstwo energetyczne warunków umowy sprzedaży ciepła lub umowy o świadczenie usług przesyłania lub dystrybucji albo umowy kompleksowej w zakresie terminów rozpoczęcia i zakończenia dostarczania ciepła w celu ogrzewania oraz planowanych przerw w dostarczaniu ciepła w okresie letnim. Nie jest wyraźnie określone, czy awaria sieci jest objęta tymi przypadkami.",80,5,4,3,"Kontekst zawiera informacje o bonifikatach (§ 39 dokumentu2.pdf), ale nie precyzuje, czy awaria sieci jest podstawą do ich zastosowania. Odpowiedź modelu jest częściowa, ponieważ wskazuje na istniejące przepisy dotyczące bonifikat, ale nie rozstrzyga kwestii awarii.",True,0.91
+L3,Czy spółka dostarczająca ciepło odbiorcom musi stosować bonifikatę gdy występuje awaria sieci?,no_mitigation,6,3,"Nie znalazłem informacji w dokumentach, które wprost odnosiłyby się do obowiązku stosowania bonifikaty w przypadku awarii sieci. Jednak w § 39 dokumentu2.pdf, jest mowa o bonifikatach w przypadku niedotrzymania przez przedsiębiorstwo energetyczne warunków umowy sprzedaży ciepła lub umowy o świadczenie usług przesyłania lub dystrybucji albo umowy kompleksowej w zakresie terminów rozpoczęcia i zakończenia dostarczania ciepła w celu ogrzewania oraz planowanych przerw w dostarczaniu ciepła w okresie letnim. Nie jest wyraźnie określone, czy awaria sieci jest objęta tymi przypadkami.",78,4,4,3,"Kontekst zawiera informacje o bonifikatach w przypadku niedotrzymania warunków umowy, w tym terminów dostarczania ciepła i planowanych przerw. Odpowiedź modelu jest częściowa, ponieważ nie wyciąga wniosku, że awaria sieci może być interpretowana jako niedotrzymanie warunków umowy, co kwalifikowałoby do bonifikaty.",True,7.08
+L3,Czy spółka dostarczająca ciepło odbiorcom musi stosować bonifikatę gdy występuje awaria sieci?,no_mitigation,9,3,"Nie znalazłem informacji w dokumentach, które wprost odnosiłyby się do obowiązku stosowania bonifikaty w przypadku awarii sieci. Dokumenty wspominają o bonifikatach w przypadku niedotrzymania warunków umowy, takich jak opóźnienia w rozpoczęciu lub zakończeniu dostarczania ciepła, lub przedłużenia planowych przerw w dostarczaniu ciepła (§ 39 dokumentu2.pdf). Jednak nie ma informacji o awariach sieci jako podstawie do stosowania bonifikat.",57,5,4,3,"Kontekst zawiera informacje o bonifikatach w przypadku niedotrzymania warunków umowy, w tym opóźnień w dostarczaniu ciepła. Odpowiedź modelu jest częściowa, ponieważ nie wyciąga wniosku, że awaria sieci może być interpretowana jako niedotrzymanie warunków umowy, co mogłoby skutkować bonifikatą.",True,13.48
+L3,Czy spółka dostarczająca ciepło odbiorcom musi stosować bonifikatę gdy występuje awaria sieci?,u_shape,0,3,"Nie znalazłem informacji w dokumentach, które wprost odnosiłyby się do obowiązku stosowania bonifikaty w przypadku awarii sieci. Jednak w § 39 dokumentu 2.pdf jest mowa o bonifikatach w przypadku niedotrzymania przez przedsiębiorstwo energetyczne warunków umowy sprzedaży ciepła, w tym terminów rozpoczęcia i zakończenia dostarczania ciepła oraz planowanych przerw w dostarczaniu ciepła. Można więc wnioskować, że jeśli awaria sieci spowoduje niedotrzymanie tych warunków, przedsiębiorstwo energetyczne może być zobowiązane do stosowania bonifikat.",70,4,4,3,"Kontekst zawiera informacje o bonifikatach w przypadku niedotrzymania warunków umowy, w tym terminów dostarczania ciepła i planowanych przerw. Odpowiedź poprawnie wskazuje na te fragmenty, ale nie wyciąga jednoznacznego wniosku, czy awaria sieci kwalifikuje się do bonifikaty.",True,13.21
+L3,Czy spółka dostarczająca ciepło odbiorcom musi stosować bonifikatę gdy występuje awaria sieci?,u_shape,2,3,"Nie znalazłem informacji w dokumentach, które wprost odnosiłyby się do obowiązku stosowania bonifikaty w przypadku awarii sieci. Jednak w § 39 dokumentu2.pdf, strona 19, jest mowa o bonifikatach w przypadku niedotrzymania przez przedsiębiorstwo energetyczne warunków umowy sprzedaży ciepła lub umowy o świadczenie usług przesyłania lub dystrybucji albo umowy kompleksowej w zakresie terminów rozpoczęcia i zakończenia dostarczania ciepła lub planowanych przerw w dostarczaniu ciepła. Nie jest jednak wyraźnie określone, czy awaria sieci jest traktowana jako niedotrzymanie warunków umowy.",77,4,4,3,"Kontekst zawiera informacje o bonifikatach za niedotrzymanie warunków umowy, w tym za opóźnienia w dostarczaniu ciepła i planowane przerwy. Odpowiedź poprawnie identyfikuje te fragmenty, ale nie wyciąga wniosku, czy awaria sieci kwalifikuje się jako niedotrzymanie warunków umowy, co jest kluczowe dla pełnej odpowiedzi.",True,13.31
+L3,Czy spółka dostarczająca ciepło odbiorcom musi stosować bonifikatę gdy występuje awaria sieci?,u_shape,4,3,"Nie znalazłem informacji w dokumentach, które wprost odnosiłyby się do obowiązku stosowania bonifikaty w przypadku awarii sieci. Jednak w § 39 dokumentu [3] jest mowa o bonifikatach w przypadku niedotrzymania przez przedsiębiorstwo energetyczne warunków umowy sprzedaży ciepła lub umowy o świadczenie usług przesyłania lub dystrybucji albo umowy kompleksowej, w zakresie terminów rozpoczęcia i zakończenia dostarczania ciepła w celu ogrzewania oraz planowanych przerw w dostarczaniu ciepła w okresie letnim. Nie jest wyraźnie określone, czy awaria sieci jest objęta tymi przypadkami.",79,4,4,3,"Kontekst zawiera informacje o bonifikatach w przypadku niedotrzymania warunków umowy, w tym terminów dostarczania ciepła i planowanych przerw. Odpowiedź poprawnie identyfikuje te fragmenty, ale nie wyciąga wniosku, czy awaria sieci kwalifikuje się jako niedotrzymanie warunków umowy, co jest kluczowe dla pytania.",True,7.16
+L3,Czy spółka dostarczająca ciepło odbiorcom musi stosować bonifikatę gdy występuje awaria sieci?,u_shape,6,3,"Nie znalazłem informacji w dokumentach, które wprost odnosiłyby się do obowiązku stosowania bonifikaty w przypadku awarii sieci. Jednak w § 39 dokumentu2.pdf jest mowa o bonifikatach w przypadku niedotrzymania przez przedsiębiorstwo energetyczne warunków umowy sprzedaży ciepła lub umowy o świadczenie usług przesyłania lub dystrybucji albo umowy kompleksowej w zakresie terminów rozpoczęcia i zakończenia dostarczania ciepła w celu ogrzewania oraz planowanych przerw w dostarczaniu ciepła w okresie letnim. Nie jest wyraźnie określone, czy awaria sieci jest traktowana jako niedotrzymanie warunków umowy.",80,4,4,3,"Kontekst zawiera informacje o bonifikatach w przypadku niedotrzymania warunków umowy, w tym terminów dostarczania ciepła i planowanych przerw. Odpowiedź modelu poprawnie identyfikuje te fragmenty, ale nie wyciąga wniosku, czy awaria sieci kwalifikuje się jako niedotrzymanie warunków umowy, co jest kluczowe dla pełnej odpowiedzi.",True,16.01
+L3,Czy spółka dostarczająca ciepło odbiorcom musi stosować bonifikatę gdy występuje awaria sieci?,u_shape,9,3,"Nie znalazłem informacji w dokumentach, która wprost wskazywałaby na obowiązek stosowania bonifikaty w przypadku awarii sieci. Jednak w § 39 dokumentu2.pdf jest mowa o bonifikatach w przypadku niedotrzymania przez przedsiębiorstwo energetyczne warunków umowy sprzedaży ciepła lub umowy o świadczenie usług przesyłania lub dystrybucji albo umowy kompleksowej w zakresie terminów rozpoczęcia i zakończenia dostarczania ciepła w celu ogrzewania oraz planowanych przerw w dostarczaniu ciepła w okresie letnim. Nie jest wyraźnie określone, czy awaria sieci jest traktowana jako niedotrzymanie warunków umowy.",79,4,4,3,"Kontekst zawiera informacje o bonifikatach (§ 39), ale nie precyzuje, czy awaria sieci kwalifikuje się jako przypadek do ich zastosowania. Odpowiedź modelu jest częściowa, ponieważ wskazuje na brak bezpośredniej odpowiedzi, ale nie wyciąga wniosków z dostępnych informacji.",True,10.17
+L3,Czy spółka dostarczająca ciepło odbiorcom musi stosować bonifikatę gdy występuje awaria sieci?,brief_context,0,3,Nie znalazłem tej informacji w dokumentach.,6,5,5,1,"Model odmówił odpowiedzi, mimo że kontekst zawierał informację o braku danych. Powinien był odnieść się do tej informacji, a nie tylko stwierdzić brak danych.",True,0.28
+L3,Czy spółka dostarczająca ciepło odbiorcom musi stosować bonifikatę gdy występuje awaria sieci?,brief_context,2,3,"Nie znalazłem tej informacji w dokumentach. Zgodnie z § 39 ust. 1 dokumentu2.pdf, bonifikaty przysługują odbiorcom w przypadku niedotrzymania warunków umowy, ale nie jest wprost wskazane, że dotyczy to awarii sieci.",31,5,4,3,"Kontekst zawiera informacje pozwalające odpowiedzieć na pytanie, wskazując, że § 39 dokumentu2.pdf odnosi się do terminów rozpoczęcia/zakończenia dostarczania ciepła i planowanych przerw, a nie wprost do awarii sieci. Odpowiedź modelu jest zgodna z tym wnioskiem, choć mogłaby być bardziej precyzyjna w odniesieniu do braku obligatoryjności bonifikaty w przypadku awarii.",True,0.51
+L3,Czy spółka dostarczająca ciepło odbiorcom musi stosować bonifikatę gdy występuje awaria sieci?,brief_context,4,3,Nie znalazłem tej informacji w dokumentach.,6,5,5,5,"Model poprawnie zidentyfikował, że w dostarczonym kontekście nie ma informacji pozwalających odpowiedzieć na zadane pytanie. Kontekst zawierał bezpośrednie stwierdzenie o braku takich informacji.",True,0.24
+L3,Czy spółka dostarczająca ciepło odbiorcom musi stosować bonifikatę gdy występuje awaria sieci?,brief_context,6,3,Nie znalazłem tej informacji w dokumentach.,6,5,5,5,"Model poprawnie zidentyfikował, że w dostarczonym kontekście nie ma informacji pozwalających odpowiedzieć na zadane pytanie. Odpowiedź jest zgodna z treścią kontekstu.",True,0.23
+L3,Czy spółka dostarczająca ciepło odbiorcom musi stosować bonifikatę gdy występuje awaria sieci?,brief_context,9,3,"Nie znalazłem tej informacji w dokumentach. W § 39 ust. 1 dokumentu2.pdf jest mowa o bonifikatach w przypadku niedotrzymania warunków umowy, w tym planowanych przerw w dostarczaniu ciepła, jednak nie jest to wyraźna odpowiedź na pytanie dotyczące awarii sieci.",39,5,5,1,"Model odmówił odpowiedzi, mimo że kontekst zawierał informacje wskazujące na możliwość zastosowania bonifikaty w przypadku niedotrzymania warunków umowy, w tym planowanych przerw w dostarczaniu ciepła. Kontekst jasno wskazuje na brak precyzyjnej odpowiedzi na pytanie dotyczące awarii sieci, ale nie wyklucza całkowicie możliwości zastosowania bonifikaty.",True,0.4
