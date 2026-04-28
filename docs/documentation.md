@@ -133,7 +133,7 @@ Tabela poniżej zawiera średnie wartości metryk dla każdej z ośmiu konfigura
 | full_stack        | 5.00         | 4.60      | 4.50         | 4.01         | 92              | 54               |
 | brief_context     | 5.00         | 4.80      | 4.80         | 2.70         | 26              | 10               |
 
-![Jakość odpowiedzi wg konfiguracji](evaluation/analysis/plots/01_metrics_by_config.png)
+![Jakość odpowiedzi wg konfiguracji](../evaluation/analysis/plots/01_metrics_by_config.png)
 
 Wizualizacja podkreśla, że faithfulness i answer relevance w zasadzie nie różnicują konfiguracji (wszystkie 4.60-5.00). Cała informacja o jakości zawiera się w metryce completeness, której rozstęp wynosi 0.80 punktu (4.20-5.00). Jest to bezpośrednie potwierdzenie wartości tej metryki w ewaluacji systemów RAG.
 
@@ -149,7 +149,7 @@ Wizualizacja podkreśla, że faithfulness i answer relevance w zasadzie nie ró�
 
 **Kompresja: oszczędność tokenów przy zachowaniu jakości.** Hierarchical zmniejsza kontekst z 698 do 98 tokenów, tracąc tylko 0.20 punktu na completeness (4.40). BriefContext idzie dalej, redukuje kontekst do 26 tokenów przy jednocześnie wyższej completeness (4.80). Extractive pokazuje pozornie najwyższy wynik (5.00), ale wymaga ostrożnej interpretacji: w 6 z 10 przypadków filtr ekstrakcyjny zwrócił pusty kontekst, co wymusiło odmowę odpowiedzi przez model. Dla pytań negatywnych odmowa jest zachowaniem prawidłowym i otrzymuje wysoką ocenę completeness, co podbija średnią. Tym samym extractive jest skuteczny tam, gdzie kontekst i tak nie zawiera odpowiedzi, ale traci informacje także w przypadkach, gdy odpowiedź jest dostępna.
 
-![Trade-off: jakość vs koszt tokenów](evaluation/analysis/plots/02_completeness_vs_context.png)
+![Trade-off: jakość vs koszt tokenów](../evaluation/analysis/plots/02_completeness_vs_context.png)
 
 Wykres rozproszenia pokazuje fundamentalny trade-off systemu RAG. Lewy górny róg, czyli wysoka jakość przy małym koszcie, jest zajęty przez konfiguracje z kompresją (BriefContext, Extractive, Hierarchical, Full stack). Konfiguracje bez kompresji (Baseline, U-shape, Query rewriting) leżą w okolicach 700 tokenów kontekstu, a Semantic chunking wyraźnie odstaje na prawo z 1633 tokenami i zarazem niższą completeness niż większość pozostałych.
 
@@ -157,7 +157,7 @@ Wykres rozproszenia pokazuje fundamentalny trade-off systemu RAG. Lewy górny r�
 
 **Full stack.** Konfiguracja łącząca rewriting, U-shape i kompresję hierarchiczną nie poprawiła wyników względem prostszych konfiguracji (completeness 4.50). Sugeruje to, że techniki inżynierii kontekstu mogą wzajemnie redukować swoje zalety. Rewriting zmienia retrieval, a kompresja hierarchiczna gubi wówczas inne informacje niż w przypadku samego rewritingu.
 
-![Completeness per pytanie i konfiguracja](evaluation/analysis/plots/05_completeness_heatmap.png)
+![Completeness per pytanie i konfiguracja](../evaluation/analysis/plots/05_completeness_heatmap.png)
 
 Heatmapa per pytanie ujawnia, że średnie wartości metryki ukrywają istotną zmienność. Dla pytań L1, L2, N1-N3 oraz S4 niemal wszystkie konfiguracje uzyskują maksymalną completeness 5.00. Realne różnice pojawiają się przy pytaniach S1, S2 i S3, gdzie poszczególne konfiguracje radzą sobie różnie. Pytanie S2 jest wyjątkowo trudne dla Semantic chunkingu (completeness 1) i Query rewritingu, podczas gdy BriefContext radzi sobie z nim dobrze (3). Sugeruje to, że ranking konfiguracji nie jest jednorodny, każda strategia ma swoje silne i słabe strony zależne od typu pytania.
 
@@ -194,7 +194,7 @@ Eksperyment polegał na zmuszeniu pipeline'u do wygenerowania odpowiedzi przy ko
 | u_shape        | 3.00  | 3.67  | 3.67  | 4.33  | 3.67   | 3.67    |
 | brief_context  | 3.67  | 4.33  | 4.33  | 4.00  | 3.00   | 3.87    |
 
-![Lost-in-the-middle: completeness vs pozycja klucza](evaluation/analysis/plots/08_litm_curves.png)
+![Lost-in-the-middle: completeness vs pozycja klucza](../evaluation/analysis/plots/08_litm_curves.png)
 
 Wykres dobrze pokazuje trzy odmienne wzorce mitygacji. Konfiguracja bez mitygacji (czerwona linia) utrzymuje stałą jakość na poziomie 3.00 dla pozycji 1-7 i skacze do 4.33 na pozycji 10. U-shape (niebieska linia) osiąga maksimum w okolicach pozycji 7, co jest spójne z mechanizmem metody, środkowe fragmenty po reorderingu trafiają na końce listy. BriefContext (zielona linia) osiąga najwyższe wartości właśnie w środku zakresu (pozycje 3 i 5), gdzie pozostałe metody radzą sobie najgorzej, jednak spada na pozycji 10 z powodu mechanizmu agregacji partycji.
 
