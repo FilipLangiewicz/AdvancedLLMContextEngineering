@@ -65,7 +65,8 @@ class Settings(BaseSettings):
     anthropic_api_key: str = ""
     google_api_key: str = ""
     groq_api_key: str = ""
-
+    groq_api_keys: str = "" 
+    
     class Config:
         env_file = ".env"
 

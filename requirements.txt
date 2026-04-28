@@ -16,3 +16,5 @@ langchain-community
 langchain-classic
 streamlit>=1.56.0
 torchvision
+matplotlib
+ragas

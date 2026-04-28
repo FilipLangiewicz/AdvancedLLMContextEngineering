@@ -2,6 +2,27 @@ import logging
 from typing import Callable
 from langchain_core.language_models import BaseChatModel
 from config.settings import settings, LLMProvider
+from itertools import cycle
+from threading import Lock
+
+def _parse_groq_keys() -> list[str]:
+    if settings.groq_api_keys:
+        keys = [k.strip() for k in settings.groq_api_keys.split(",") if k.strip()]
+        if keys:
+            return keys
+    if settings.groq_api_key:
+        return [settings.groq_api_key]
+    return []
+
+_GROQ_KEYS = _parse_groq_keys()
+_GROQ_KEY_CYCLE = cycle(_GROQ_KEYS) if _GROQ_KEYS else None
+_GROQ_KEY_LOCK = Lock()
+
+def _next_groq_key() -> str:
+    if _GROQ_KEY_CYCLE is None:
+        raise ValueError("No Groq API key configured (set GROQ_API_KEY or GROQ_API_KEYS in .env)")
+    with _GROQ_KEY_LOCK:
+        return next(_GROQ_KEY_CYCLE)
 
 logger = logging.getLogger(__name__)
 
@@ -16,9 +37,11 @@ def _make_google(model: str) -> BaseChatModel:
 
 def _make_groq(model: str) -> BaseChatModel:
     from langchain_groq import ChatGroq
+    key = _next_groq_key()
+    logger.info(f"Groq LLM | model={model} | key=...{key[-6:]}")
     return ChatGroq(
         model=model,
-        api_key=settings.groq_api_key,
+        api_key=key,
         temperature=settings.llm_temperature,
     )
 

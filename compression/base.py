@@ -6,6 +6,7 @@ from langchain_core.documents import Document
 class CompressionStrategy(str, Enum):
     EXTRACTIVE_FILTER = "extractive_filter"
     HIERARCHICAL_SUMMARY = "hierarchical_summary"
+    BRIEF_CONTEXT = "brief_context"
 
 
 class BaseContextCompressor(ABC):

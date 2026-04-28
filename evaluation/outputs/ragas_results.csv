@@ -1,0 +1,75 @@
+config,question_id,category,question,n_contexts,llm_context_precision_without_reference,nv_context_relevance
+baseline,S1,short,Jakie koszty przyjąć do kalkulacji taryfy dla ciepła?,5,0.49999999995,1.0
+baseline,S2,short,Jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła?,5,0.249999999975,1.0
+baseline,S3,short,Jak ustala się koszt zakupu uprawnień do emisji CO2 przyjmowanych do taryfy dla ciepła?,5,0.49999999995,0.25
+baseline,S4,short,Jak określić współczynnik udziału opłat stałych w opłatach łącznych?,5,0.0,0.5
+baseline,L1,long,Jak wyliczyć kwotę zwrotu z kapitału w taryfie dla ciepła przy wytwarzaniu ciepła przy użyciu paliwa węglowego?,5,0.49999999995,0.25
+baseline,L2,long,Co należy przedstawić we wniosku o zatwierdzenie taryfy dla ciepła?,5,0.0,1.0
+baseline,L3,long,Czy spółka dostarczająca ciepło odbiorcom musi stosować bonifikatę gdy występuje awaria sieci?,5,0.0,0.5
+baseline,N1,negative,Jaka jest stawka VAT na energię cieplną w 2024 roku?,5,0.0,0.0
+baseline,N2,negative,Jaka jest średnia cena ciepła systemowego w Polsce w 2024 roku?,5,0.0,0.0
+baseline,N3,negative,Jak rozliczyć podatek dochodowy od dochodów uzyskanych ze sprzedaży nadwyżki energii z mikroinstalacji fotowoltaicznej?,5,0.0,0.0
+semantic_chunk,S1,short,Jakie koszty przyjąć do kalkulacji taryfy dla ciepła?,5,0.9999999999,1.0
+semantic_chunk,S2,short,Jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła?,5,0.19999999998,1.0
+semantic_chunk,S3,short,Jak ustala się koszt zakupu uprawnień do emisji CO2 przyjmowanych do taryfy dla ciepła?,5,0.0,0.75
+semantic_chunk,S4,short,Jak określić współczynnik udziału opłat stałych w opłatach łącznych?,5,0.0,0.5
+semantic_chunk,L1,long,Jak wyliczyć kwotę zwrotu z kapitału w taryfie dla ciepła przy wytwarzaniu ciepła przy użyciu paliwa węglowego?,5,0.0,0.5
+semantic_chunk,L2,long,Co należy przedstawić we wniosku o zatwierdzenie taryfy dla ciepła?,5,0.0,0.5
+semantic_chunk,L3,long,Czy spółka dostarczająca ciepło odbiorcom musi stosować bonifikatę gdy występuje awaria sieci?,5,0.0,0.0
+semantic_chunk,N1,negative,Jaka jest stawka VAT na energię cieplną w 2024 roku?,5,0.0,0.0
+semantic_chunk,N2,negative,Jaka jest średnia cena ciepła systemowego w Polsce w 2024 roku?,5,0.0,0.0
+semantic_chunk,N3,negative,Jak rozliczyć podatek dochodowy od dochodów uzyskanych ze sprzedaży nadwyżki energii z mikroinstalacji fotowoltaicznej?,5,0.0,0.0
+u_shape,S1,short,Jakie koszty przyjąć do kalkulacji taryfy dla ciepła?,5,0.9999999999,1.0
+u_shape,S2,short,Jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła?,5,0.249999999975,1.0
+u_shape,S3,short,Jak ustala się koszt zakupu uprawnień do emisji CO2 przyjmowanych do taryfy dla ciepła?,5,0.19999999998,0.5
+u_shape,S4,short,Jak określić współczynnik udziału opłat stałych w opłatach łącznych?,5,0.0,0.5
+u_shape,L1,long,Jak wyliczyć kwotę zwrotu z kapitału w taryfie dla ciepła przy wytwarzaniu ciepła przy użyciu paliwa węglowego?,5,0.0,0.25
+u_shape,L2,long,Co należy przedstawić we wniosku o zatwierdzenie taryfy dla ciepła?,5,0.0,0.75
+u_shape,L3,long,Czy spółka dostarczająca ciepło odbiorcom musi stosować bonifikatę gdy występuje awaria sieci?,5,0.249999999975,0.5
+u_shape,N1,negative,Jaka jest stawka VAT na energię cieplną w 2024 roku?,5,0.0,0.0
+u_shape,N2,negative,Jaka jest średnia cena ciepła systemowego w Polsce w 2024 roku?,5,0.0,0.0
+u_shape,N3,negative,Jak rozliczyć podatek dochodowy od dochodów uzyskanych ze sprzedaży nadwyżki energii z mikroinstalacji fotowoltaicznej?,5,0.0,0.0
+rewrite,S1,short,Jakie koszty przyjąć do kalkulacji taryfy dla ciepła?,5,0.36666666664833336,1.0
+rewrite,S2,short,Jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła?,5,0.99999999995,1.0
+rewrite,S3,short,Jak ustala się koszt zakupu uprawnień do emisji CO2 przyjmowanych do taryfy dla ciepła?,5,0.0,0.75
+rewrite,S4,short,Jak określić współczynnik udziału opłat stałych w opłatach łącznych?,5,0.0,0.5
+rewrite,L1,long,Jak wyliczyć kwotę zwrotu z kapitału w taryfie dla ciepła przy wytwarzaniu ciepła przy użyciu paliwa węglowego?,5,0.0,0.5
+rewrite,L2,long,Co należy przedstawić we wniosku o zatwierdzenie taryfy dla ciepła?,5,0.0,0.0
+rewrite,L3,long,Czy spółka dostarczająca ciepło odbiorcom musi stosować bonifikatę gdy występuje awaria sieci?,5,0.249999999975,0.5
+rewrite,N1,negative,Jaka jest stawka VAT na energię cieplną w 2024 roku?,5,0.0,0.0
+rewrite,N2,negative,Jaka jest średnia cena ciepła systemowego w Polsce w 2024 roku?,5,0.0,0.25
+rewrite,N3,negative,Jak rozliczyć podatek dochodowy od dochodów uzyskanych ze sprzedaży nadwyżki energii z mikroinstalacji fotowoltaicznej?,5,0.0,0.0
+extractive,S1,short,Jakie koszty przyjąć do kalkulacji taryfy dla ciepła?,5,0.99999999995,1.0
+extractive,S2,short,Jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła?,4,0.3333333333,1.0
+extractive,L1,long,Jak wyliczyć kwotę zwrotu z kapitału w taryfie dla ciepła przy wytwarzaniu ciepła przy użyciu paliwa węglowego?,1,0.0,0.5
+extractive,L2,long,Co należy przedstawić we wniosku o zatwierdzenie taryfy dla ciepła?,1,0.0,1.0
+hierarchical,S1,short,Jakie koszty przyjąć do kalkulacji taryfy dla ciepła?,1,0.9999999999,1.0
+hierarchical,S2,short,Jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła?,1,0.9999999999,1.0
+hierarchical,S3,short,Jak ustala się koszt zakupu uprawnień do emisji CO2 przyjmowanych do taryfy dla ciepła?,1,0.9999999999,1.0
+hierarchical,S4,short,Jak określić współczynnik udziału opłat stałych w opłatach łącznych?,1,0.9999999999,0.0
+hierarchical,L1,long,Jak wyliczyć kwotę zwrotu z kapitału w taryfie dla ciepła przy wytwarzaniu ciepła przy użyciu paliwa węglowego?,1,0.9999999999,1.0
+hierarchical,L2,long,Co należy przedstawić we wniosku o zatwierdzenie taryfy dla ciepła?,1,0.9999999999,1.0
+hierarchical,L3,long,Czy spółka dostarczająca ciepło odbiorcom musi stosować bonifikatę gdy występuje awaria sieci?,1,0.9999999999,0.5
+hierarchical,N1,negative,Jaka jest stawka VAT na energię cieplną w 2024 roku?,1,0.9999999999,0.0
+hierarchical,N2,negative,Jaka jest średnia cena ciepła systemowego w Polsce w 2024 roku?,1,0.9999999999,0.0
+hierarchical,N3,negative,Jak rozliczyć podatek dochodowy od dochodów uzyskanych ze sprzedaży nadwyżki energii z mikroinstalacji fotowoltaicznej?,1,0.9999999999,0.0
+full_stack,S1,short,Jakie koszty przyjąć do kalkulacji taryfy dla ciepła?,1,0.9999999999,1.0
+full_stack,S2,short,Jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła?,1,0.9999999999,1.0
+full_stack,S3,short,Jak ustala się koszt zakupu uprawnień do emisji CO2 przyjmowanych do taryfy dla ciepła?,1,0.9999999999,1.0
+full_stack,S4,short,Jak określić współczynnik udziału opłat stałych w opłatach łącznych?,1,0.9999999999,1.0
+full_stack,L1,long,Jak wyliczyć kwotę zwrotu z kapitału w taryfie dla ciepła przy wytwarzaniu ciepła przy użyciu paliwa węglowego?,1,0.9999999999,1.0
+full_stack,L2,long,Co należy przedstawić we wniosku o zatwierdzenie taryfy dla ciepła?,1,0.9999999999,1.0
+full_stack,L3,long,Czy spółka dostarczająca ciepło odbiorcom musi stosować bonifikatę gdy występuje awaria sieci?,1,0.9999999999,1.0
+full_stack,N1,negative,Jaka jest stawka VAT na energię cieplną w 2024 roku?,1,0.9999999999,0.0
+full_stack,N2,negative,Jaka jest średnia cena ciepła systemowego w Polsce w 2024 roku?,1,0.9999999999,0.0
+full_stack,N3,negative,Jak rozliczyć podatek dochodowy od dochodów uzyskanych ze sprzedaży nadwyżki energii z mikroinstalacji fotowoltaicznej?,1,0.9999999999,0.0
+brief_context,S1,short,Jakie koszty przyjąć do kalkulacji taryfy dla ciepła?,1,0.9999999999,1.0
+brief_context,S2,short,Jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła?,1,0.9999999999,1.0
+brief_context,S3,short,Jak ustala się koszt zakupu uprawnień do emisji CO2 przyjmowanych do taryfy dla ciepła?,1,0.9999999999,0.0
+brief_context,S4,short,Jak określić współczynnik udziału opłat stałych w opłatach łącznych?,1,0.9999999999,0.0
+brief_context,L1,long,Jak wyliczyć kwotę zwrotu z kapitału w taryfie dla ciepła przy wytwarzaniu ciepła przy użyciu paliwa węglowego?,1,0.9999999999,0.0
+brief_context,L2,long,Co należy przedstawić we wniosku o zatwierdzenie taryfy dla ciepła?,1,0.9999999999,0.0
+brief_context,L3,long,Czy spółka dostarczająca ciepło odbiorcom musi stosować bonifikatę gdy występuje awaria sieci?,1,0.9999999999,0.0
+brief_context,N1,negative,Jaka jest stawka VAT na energię cieplną w 2024 roku?,1,0.9999999999,0.0
+brief_context,N2,negative,Jaka jest średnia cena ciepła systemowego w Polsce w 2024 roku?,1,0.9999999999,0.0
+brief_context,N3,negative,Jak rozliczyć podatek dochodowy od dochodów uzyskanych ze sprzedaży nadwyżki energii z mikroinstalacji fotowoltaicznej?,1,0.9999999999,0.0
