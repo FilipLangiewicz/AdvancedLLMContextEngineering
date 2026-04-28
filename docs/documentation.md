@@ -82,7 +82,7 @@ Pipeline RAG dotyczy etapów prowadzących od analizy zapytania (promptu) do wyg
 
 Analogiczne zdefiniowanie kolejnych kroków i metod prowadzących do wygenerowania najlepszej odpowiedzi zostało przedstawione w schemacie "Rewrite-Retrieve-Read" [3].
 
-Dodatkowo zastosowana została metoda semantic cache, która optymalizuje obsługę powtarzalnych zapytań zbliżonych semantycznie. Dla nowego zapytania wyliczany jest embedding i porównywany z embeddingami wcześniejszych zapytań za pomocą metryki cosine similarity. Jeśli inne zapytanie jest wystarczająco podobne, na podstawie ustalonego progu (domyślnie 0.92), zwracana jest wcześniej wygenerowana odpowiedź. Cache działa po stronie aplikacji i jest niezależny od mechanizmu KV-cache w samym modelu.
+Dodatkowo zastosowana została metoda semantic cache, która optymalizuje obsługę powtarzalnych zapytań zbliżonych semantycznie. Dla nowego zapytania wyliczany jest embedding i porównywany z embeddingami wcześniejszych zapytań za pomocą metryki cosine similarity. Jeśli inne zapytanie jest wystarczająco podobne, na podstawie ustalonego progu (domyślnie 0.92), zwracana jest wcześniej wygenerowana odpowiedź. Cache działa po stronie aplikacji.
 
 ### 4. Aplikacja Streamlit
 Przygotowana została aplikacja w formie czatu z wykorzystaniem pakietu Streamlit. Interfejs umożliwia zmianę najważniejszych ustawień systemu w czasie rzeczywistym. Po przesłaniu zapytania aplikacja zwraca odpowiedź wraz z dokładnym odwołaniem do źródła (numer dokumentu, strona, artykuł, rozdział) oraz informacją, czy odpowiedź pochodzi z pamięci podręcznej.
