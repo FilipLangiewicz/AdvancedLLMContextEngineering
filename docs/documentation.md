@@ -106,6 +106,19 @@ Uzupełnieniem powyższych są metryki ilościowe: czas odpowiedzi oraz liczba t
 
 Zestaw testowy został przygotowany ręcznie na podstawie wiedzy eksperckiej z dziedziny prawa energetycznego. Pytania zostały podzielone na trzy kategorie. Pytania z odpowiedzią krótką (S1, S2, S3, S4) obejmują definicje, zasady i konkretne wartości pozwalające na precyzyjną weryfikację. Pytania z odpowiedzią rozbudowaną (L1, L2, L3) dotyczą procedur i kompleksowych wyjaśnień, testując kompletność i strukturę odpowiedzi. Pytania kontrolne (N1, N2, N3) to pytania, na które dokumenty *nie* zawierają odpowiedzi, ich celem jest weryfikacja odporności systemu na halucynacje i sprawdzenie, czy model rzeczywiście odmawia odpowiedzi, zamiast ją zmyślać.
 
+Pytania wykorzystane w ewaluacji:
+
+- S1: Jakie koszty przyjąć do kalkulacji taryfy dla ciepła?
+- S2: Jak ocenia się koszty uzasadnione przyjęte do taryfy dla ciepła?
+- S3: Jak ustala się koszt zakupu uprawnień do emisji CO2 przyjmowanych do taryfy dla ciepła?
+- S4: Jak określić współczynnik udziału opłat stałych w opłatach łącznych?
+- L1: Jak wyliczyć kwotę zwrotu z kapitału w taryfie dla ciepła przy wytwarzaniu ciepła przy użyciu paliwa węglowego?
+- L2: Co należy przedstawić we wniosku o zatwierdzenie taryfy dla ciepła?
+- L3: Czy spółka dostarczająca ciepło odbiorcom musi stosować bonifikatę gdy występuje awaria sieci?
+- N1: Jaka jest stawka VAT na energię cieplną w 2024 roku?
+- N2: Jaka jest średnia cena ciepła systemowego w Polsce w 2024 roku?
+- N3: Jak rozliczyć podatek dochodowy od dochodów uzyskanych ze sprzedaży nadwyżki energii z mikroinstalacji fotowoltaicznej?
+
 #### Eksperymenty
 
 Pierwszym eksperymentem było porównanie strategii inżynierii kontekstu. Każda z testowanych konfiguracji systemu została uruchomiona dla wszystkich pytań z zestawu testowego, a wyniki zebrano w macierz pozwalającą ocenić wpływ poszczególnych komponentów na jakość odpowiedzi i koszt obliczeniowy. Porównane konfiguracje obejmowały: baseline (chunking strukturalny, brak rerankingu, brak kompresji), chunking semantyczny, reranking U-shape, query rewriting, kompresję ekstrakcyjną, kompresję hierarchiczną, BriefContext oraz konfigurację łączącą rewriting + U-shape + kompresję hierarchiczną.
