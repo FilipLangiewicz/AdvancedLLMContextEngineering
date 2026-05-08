@@ -85,7 +85,26 @@ Analogiczne zdefiniowanie kolejnych kroków i metod prowadzących do wygenerowan
 Dodatkowo zastosowana została metoda semantic cache, która optymalizuje obsługę powtarzalnych zapytań zbliżonych semantycznie. Dla nowego zapytania wyliczany jest embedding i porównywany z embeddingami wcześniejszych zapytań za pomocą metryki cosine similarity. Jeśli inne zapytanie jest wystarczająco podobne, na podstawie ustalonego progu (domyślnie 0.92), zwracana jest wcześniej wygenerowana odpowiedź. Cache działa po stronie aplikacji.
 
 ### 4. Aplikacja Streamlit
-Przygotowana została aplikacja w formie czatu z wykorzystaniem pakietu Streamlit. Interfejs umożliwia zmianę najważniejszych ustawień systemu w czasie rzeczywistym. Po przesłaniu zapytania aplikacja zwraca odpowiedź wraz z dokładnym odwołaniem do źródła (numer dokumentu, strona, artykuł, rozdział) oraz informacją, czy odpowiedź pochodzi z pamięci podręcznej.
+Przygotowana została aplikacja w formie czatu z wykorzystaniem pakietu Streamlit. Interfejs umożliwia zmianę najważniejszych ustawień systemu w czasie rzeczywistym, bez konieczności restartowania aplikacji.
+
+W panelu bocznym użytkownik może kontrolować:
+
+- strategię segmentacji dokumentów: strukturalna lub semantyczna,
+- sposób przetwarzania zapytań: rewriting lub bez transformacji,
+- strategię rerankingu: kolejność oryginalna lub U-shape,
+- strategię kompresji kontekstu: brak kompresji, filtr ekstrakcyjny lub streszczenie hierarchiczne,
+- dostawcę modelu językowego: Groq, Google, OpenAI lub Anthropic,
+- liczbę pobieranych fragmentów: wartość `k` z zakresu 1-10,
+- włączenie pamięci podręcznej oraz próg podobieństwa: przełącznik on/off i suwak od 0.70 do 1.00.
+
+Po przesłaniu pytania aplikacja zwraca odpowiedź wygenerowaną na podstawie dokumentów oraz dodatkowe informacje techniczne. W szczegółach odpowiedzi widoczne są:
+
+- wybrana konfiguracja przetwarzania,
+- lista wykorzystanych źródeł wraz z nazwą pliku źródłowego, numerem strony, artykułu i rozdziału.
+
+Taki układ pozwala użytkownikowi nie tylko uzyskać odpowiedź, ale również łatwo sprawdzić, skąd zostały pobrane informacje.
+
+![Widok aplikacji](../docs/app2.png)
 
 ### 5. Plan eksperymentów i ewaluacji
 Ewaluacja systemu RAG w domenie prawnej została przeprowadzona w dwóch aspektach. Pierwszy dotyczy walidacji kontekstu, oceny jakości fragmentów dokumentów przekazywanych do modelu generatywnego, czyli tego, czy retriever odnajduje właściwe fragmenty oraz czy kolejne etapy przetwarzania kontekstu (reranking, kompresja) zachowują istotne informacje. Drugi aspekt dotyczy jakości odpowiedzi, czyli oceny tekstu wygenerowanego przez model na podstawie tego kontekstu. Rozdzielenie tych dwóch zagadnień jest istotne, ponieważ pozwala zlokalizować źródło ewentualnych błędów: słaba odpowiedź może wynikać zarówno z niedoskonałego retrievala, jak i z ograniczeń samego modelu generatywnego.
@@ -231,6 +250,80 @@ Wyniki potwierdzają, że inżynieria kontekstu ma istotny wpływ na jakość sy
 - prosta konfiguracja baseline (chunking strukturalny, brak rerankingu, brak kompresji) jest zaskakująco mocna i powinna być zawsze rozważana jako punkt odniesienia przy projektowaniu systemów RAG.
 
 Najważniejszym wnioskiem metodologicznym jest konieczność stosowania metryki completeness obok faithfulness i answer relevance. Bez completeness wszystkie konfiguracje uzyskują podobne maksymalne oceny, a istotne różnice w jakości retrievala pozostają niewidoczne.
+
+## Instrukcja uruchomienia aplikacji
+
+#### 1. Pobranie kodu
+Najpierw należy sklonować repozytorium i przejść do katalogu projektu:
+
+```bash
+git clone https://github.com/FilipLangiewicz/AdvancedLLMContextEngineering
+cd AdvancedLLMContextEngineering
+```
+
+#### 2. Utworzenie środowiska wirtualnego
+Należy utworzyć środowisko wirtualne, aktywować je, a następnie zainstalować wszystkie niezbędne pakiety.
+
+```bash
+python -m venv venv-nlp
+```
+
+```bash
+source venv-nlp/bin/activate
+```
+
+```bash
+pip install -r requirements.txt
+```
+
+#### 3. Plik `.env`
+W katalogu głównym projektu musi znajdować się plik `.env`. Aplikacja wczytuje z niego wszystkie ustawienia potrzebne do uruchomienia modelu, bazy wektorowej i mechanizmu cache. Bez tego pliku aplikacja nie wystartuje poprawnie. Najwygodniej skopiować wzór do nowego pliku `.env` i uzupełnić własne wartości.
+
+Przykładowy wzór pliku `.env` dla modelu od dostawcy Groq, który należy uzupełnić o klucz API oraz URL do bazy wektorowej Qdrant oraz klucz API do modeli Groq:
+
+```env
+QDRANT_URL=
+QDRANT_API_KEY=
+
+LLM_PROVIDER=groq
+LLM_TEMPERATURE=0.0
+
+GROQ_MODEL=llama-3.3-70b-versatile
+GOOGLE_MODEL=gemini-2.5-flash
+OPENAI_MODEL=gpt-4o-mini
+ANTHROPIC_MODEL=claude-2
+
+GROQ_API_KEY=
+GOOGLE_API_KEY=
+OPENAI_API_KEY=
+ANTHROPIC_API_KEY=
+```
+
+Klucz API oraz URL do Qdrant należy pobrać z panelu Qdrant Cloud po utworzeniu własnego klastra. Do pola `QDRANT_URL` należy wkleić adres API klastra. Klucz Groq pobiera się z panelu Groq Console, w sekcji z kluczami API użytkownika. Jeśli używany ma być inny dostawca modelu, należy uzupełnić odpowiednie pole `*_API_KEY` i ustawić `LLM_PROVIDER` zgodnie z wybranym dostawcą modelu.
+
+#### 4. Utworzenie bazy wektorowej Qdrant
+Po zebraniu dokumentów trzeba zbudować indeks wektorowy. W tym celu uruchamia się pipeline ingestii, który wczytuje PDF-y, czyści treść, dzieli dokumenty na fragmenty i zapisuje je do Qdrant:
+
+```bash
+python -m ingestion.pipeline --strategy structure --recreate
+```
+
+Parametr `--strategy structure` uruchamia chunking strukturalny, czyli domyślną strategię opartą na artykułach i paragrafach. Jeśli potrzebna jest alternatywna wersja semantyczna, można użyć:
+
+```bash
+python -m ingestion.pipeline --strategy semantic --recreate
+```
+
+Flaga `--recreate` usuwa istniejącą kolekcję i tworzy ją od nowa. Jest to wygodne przy pierwszym uruchomieniu oraz po zmianie dokumentów źródłowych.
+
+#### 5. Uruchomienie aplikacji
+Po zbudowaniu bazy wektorowej można uruchomić interfejs Streamlit:
+
+```bash
+streamlit run app.py
+```
+
+Po chwili aplikacja powinna otworzyć się w przeglądarce pod adresem lokalnym pokazanym przez Streamlit.
 
 ## Wykorzystane technologie
 
