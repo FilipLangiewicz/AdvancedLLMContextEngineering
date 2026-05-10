@@ -104,7 +104,7 @@ Po przesłaniu pytania aplikacja zwraca odpowiedź wygenerowaną na podstawie do
 
 Taki układ pozwala użytkownikowi nie tylko uzyskać odpowiedź, ale również łatwo sprawdzić, skąd zostały pobrane informacje.
 
-![Widok aplikacji](../docs/app2.png)
+![Widok aplikacji](../docs/app3.png)
 
 ### 5. Plan eksperymentów i ewaluacji
 Ewaluacja systemu RAG w domenie prawnej została przeprowadzona w dwóch aspektach. Pierwszy dotyczy walidacji kontekstu, oceny jakości fragmentów dokumentów przekazywanych do modelu generatywnego, czyli tego, czy retriever odnajduje właściwe fragmenty oraz czy kolejne etapy przetwarzania kontekstu (reranking, kompresja) zachowują istotne informacje. Drugi aspekt dotyczy jakości odpowiedzi, czyli oceny tekstu wygenerowanego przez model na podstawie tego kontekstu. Rozdzielenie tych dwóch zagadnień jest istotne, ponieważ pozwala zlokalizować źródło ewentualnych błędów: słaba odpowiedź może wynikać zarówno z niedoskonałego retrievala, jak i z ograniczeń samego modelu generatywnego.
