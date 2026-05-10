@@ -169,7 +169,7 @@ Tabela poniżej zawiera średnie wartości metryk dla każdej z ośmiu konfigura
 
 Wizualizacja podkreśla, że faithfulness i answer relevance w zasadzie nie różnicują konfiguracji (wszystkie 4.60-5.00). Cała informacja o jakości zawiera się w metryce completeness, której rozstęp wynosi 0.80 punktu (4.20-5.00). Jest to bezpośrednie potwierdzenie wartości tej metryki w ewaluacji systemów RAG.
 
-### Obserwacje z macierzy
+### Obserwacje z macierzy w zestawieniu z literaturą
 
 **Brak halucynacji.** Wszystkie konfiguracje uzyskały faithfulness na poziomie 4.80-5.00, co potwierdza skuteczność promptu systemowego wymuszającego odpowiedzi oparte wyłącznie na dostarczonym kontekście. Wynik ten stanowi empiryczną walidację założeń przedstawionych w pracy [1], według których integracja dokumentów źródłowych w procesie generacji znacząco ogranicza halucynacje. System nie produkuje informacji, których nie ma w dokumentach, niezależnie od konfiguracji. To istotny wynik dla domeny prawnej, w której halucynacje są szczególnie niebezpieczne.
 
