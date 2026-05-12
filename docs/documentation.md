@@ -179,7 +179,7 @@ Wizualizacja podkreśla, że faithfulness i answer relevance w zasadzie nie ró�
 
 **Query rewriting.** Co ciekawe, rewriting zaszkodził completeness (4.20 vs 4.60 baseline). Analiza odpowiedzi pokazuje, że rewriting czasem zmienia akcent zapytania. Choć w pracach [3] oraz [4] wskazuje się na korzyści z reformułowania zapytań w domenach ogólnych, w przypadku tekstów prawnych, gdzie precyzja terminologiczna jest nadrzędna, zmiana sformułowań przez LLM może prowadzić do gorszego dopasowania do bazy wiedzy.
 
-**Kompresja: oszczędność tokenów przy zachowaniu jakości.** Metoda hierarchical zmniejsza kontekst z 698 do 98 tokenów, tracąc tylko 0.20 punktu na completeness (4.40). Wynik ten wpisuje się w badania nad ekstremalną kompresją [5, 6], ale jednocześnie wskazuje na ryzyko „gubienia” detali podczas agregacji, o którym wspomniano w pracy [7].BriefContext idzie dalej, redukuje kontekst do 26 tokenów przy jednocześnie wyższej completeness (4.80). Extractive pokazuje pozornie najwyższy wynik (5.00), ale wymaga ostrożnej interpretacji: w 6 z 10 przypadków filtr ekstrakcyjny zwrócił pusty kontekst, co wymusiło odmowę odpowiedzi przez model. Dla pytań negatywnych odmowa jest zachowaniem prawidłowym i otrzymuje wysoką ocenę completeness, co podbija średnią. Tym samym extractive jest skuteczny tam, gdzie kontekst i tak nie zawiera odpowiedzi, ale traci informacje także w przypadkach, gdy odpowiedź jest dostępna.
+**Kompresja: oszczędność tokenów przy zachowaniu jakości.** Metoda hierarchical zmniejsza kontekst z 698 do 98 tokenów, tracąc tylko 0.20 punktu na completeness (4.40). Wynik ten wpisuje się w badania nad ekstremalną kompresją [5] i [6], ale jednocześnie wskazuje na ryzyko „gubienia” detali podczas agregacji, o którym wspomniano w pracy [7]. BriefContext idzie dalej, redukuje kontekst do 26 tokenów przy jednocześnie wyższej completeness (4.80). Extractive pokazuje pozornie najwyższy wynik (5.00), ale wymaga ostrożnej interpretacji: w 6 z 10 przypadków filtr ekstrakcyjny zwrócił pusty kontekst, co wymusiło odmowę odpowiedzi przez model. Dla pytań negatywnych odmowa jest zachowaniem prawidłowym i otrzymuje wysoką ocenę completeness, co podbija średnią. Tym samym extractive jest skuteczny tam, gdzie kontekst i tak nie zawiera odpowiedzi, ale traci informacje także w przypadkach, gdy odpowiedź jest dostępna.
 
 ![Trade-off: jakość vs koszt tokenów](../evaluation/analysis/plots/02_completeness_vs_context.png)
 
@@ -242,11 +242,11 @@ Faithfulness w eksperymencie LITM utrzymywała się na wysokim poziomie niezale�
 
 Wyniki potwierdzają, że inżynieria kontekstu ma istotny wpływ na jakość systemu RAG i że wybór odpowiedniej strategii zależy od domeny i charakteru zapytań. Dla dokumentów prawnych o silnej strukturze formalnej:
 
-- chunking strukturalny przewyższa semantyczny zarówno pod względem jakości, jak i kosztu,
-- query rewriting niekoniecznie pomaga, jeśli pytania są już sformułowane formalnym językiem,
-- kompresja kontekstu może drastycznie zmniejszyć koszt tokenowy bez znaczącej utraty jakości,
-- BriefContext osiąga najlepszy stosunek jakości do kosztu i jest najbardziej skuteczną z testowanych metod mitygacji lost-in-the-middle,
-- system jest odporny na halucynacje niezależnie od konfiguracji, prompt systemowy wymuszający odmowę odpowiedzi przy braku informacji w kontekście działa skutecznie,
+- chunking strukturalny przewyższa semantyczny zarówno pod względem jakości, jak i kosztu, co potwierdza tezę z pracy [2] o konieczności zachowania merytorycznej spójności przepisów prawnych,
+- query rewriting niekoniecznie pomaga, jeśli pytania są już sformułowane formalnym językiem, co sugeruje, że mechanizmy rewriting opisane w pracy [3] i [4] mogą wymagać szczególnego dostosowania do dokumentów prawnych,
+- kompresja kontekstu może drastycznie zmniejszyć koszt tokenowy bez znaczącej utraty jakości, co koresponduje z wynikami badań opisanymi w pracach [5] oraz [6],
+- BriefContext osiąga najlepszy stosunek jakości do kosztu i jest najbardziej skuteczną z testowanych metod mitygacji lost-in-the-middle, wykorzystując architekturę zbliżoną do podejścia MapReduce opisanego w pracy [10].
+- system jest odporny na halucynacje niezależnie od konfiguracji, prompt systemowy wymuszający odmowę odpowiedzi przy braku informacji w kontekście działa skutecznie, co jest spójne z bazowymi założeniami architektury RAG opisanej w pracy [1],
 - prosta konfiguracja baseline (chunking strukturalny, brak rerankingu, brak kompresji) jest zaskakująco mocna i powinna być zawsze rozważana jako punkt odniesienia przy projektowaniu systemów RAG.
 
 Najważniejszym wnioskiem metodologicznym jest konieczność stosowania metryki completeness obok faithfulness i answer relevance. Bez completeness wszystkie konfiguracje uzyskują podobne maksymalne oceny, a istotne różnice w jakości retrievala pozostają niewidoczne.
