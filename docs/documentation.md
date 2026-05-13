@@ -111,7 +111,7 @@ Ewaluacja systemu RAG w domenie prawnej została przeprowadzona w dwóch aspekta
 
 #### Metryki
 
-Walidacja kontekstu została przeprowadzona z wykorzystaniem biblioteki Ragas, oferującej referencyjne implementacje miar oceny systemów RAG. Wykorzystano metryki *context precision* (czy w dostarczonych fragmentach faktycznie znajdują się informacje istotne dla pytania) oraz *context relevance* (jaki odsetek treści fragmentów odnosi się bezpośrednio do zapytania). Obie metryki nie wymagają złotych odpowiedzi, operują wyłącznie na trójce: "pytanie, kontekst, odpowiedź", co czyni je odpowiednimi dla naszego scenariusza, w którym póki co zdecydowaliśmy się nie używać "ground truth".
+Walidacja kontekstu została przeprowadzona z wykorzystaniem biblioteki Ragas, oferującej referencyjne implementacje miar oceny systemów RAG. Wykorzystano metryki *context precision* (czy w dostarczonych fragmentach faktycznie znajdują się informacje istotne dla pytania) oraz *context relevance* (jaki odsetek treści fragmentów odnosi się bezpośrednio do zapytania). Obie metryki nie wymagają złotych odpowiedzi, operują wyłącznie na trójce: "pytanie, kontekst, odpowiedź", co czyni je odpowiednimi dla naszego scenariusza, w którym zdecydowaliśmy się nie używać "ground truth".
 
 Jakość odpowiedzi została oceniona własną implementacją LLM-as-a-Judge opartą na modelu Gemini 2.5 Flash. Wybór własnej implementacji zamiast gotowych metryk Ragas wynika z konieczności dostosowania promptów do języka polskiego i specyfiki tekstów prawnych. Mierzone są trzy metryki w skali 1-5 wraz z uzasadnieniem przedstawionym przez model oceniający:
 
@@ -195,16 +195,16 @@ Heatmapa per pytanie ujawnia, że średnie wartości metryki ukrywają istotną 
 
 ### Wyniki Ragas
 
-| Konfiguracja      | Context Precision | Context Relevance | N  |
-|-------------------|-------------------|-------------------|----|
-| baseline          | 0.175             | 0.450             | 10 |
-| semantic_chunk    | 0.120             | 0.425             | 10 |
-| u_shape           | 0.170             | 0.450             | 10 |
-| rewrite           | 0.162             | 0.450             | 10 |
-| extractive        | 0.333             | 0.875             | 4  |
-| hierarchical      | 1.000             | 0.550             | 10 |
-| full_stack        | 1.000             | 0.700             | 10 |
-| brief_context     | 1.000             | 0.200             | 10 |
+| Konfiguracja      | Context Precision | Context Relevance | Liczba pytań  |
+|-------------------|-------------------|-------------------|---------------|
+| baseline          | 0.175             | 0.450             | 10            |
+| semantic_chunk    | 0.120             | 0.425             | 10            |
+| u_shape           | 0.170             | 0.450             | 10            |
+| rewrite           | 0.162             | 0.450             | 10            |
+| extractive        | 0.333             | 0.875             | 4             |
+| hierarchical      | 1.000             | 0.550             | 10            |
+| full_stack        | 1.000             | 0.700             | 10            |
+| brief_context     | 1.000             | 0.200             | 10            |
 
 Wyniki Ragas wymagają szczególnej ostrożności w interpretacji ze względu na sposób, w jaki Ragas traktuje wynik kompresji. Dla konfiguracji bez kompresji (`baseline`, `semantic_chunk`, `u_shape`, `rewrite`) Ragas otrzymuje listę 5 oryginalnych fragmentów z bazy wektorowej i ocenia każdy z osobna. W tym przypadku metryki działają zgodnie z zamierzonym sensem: niska precision (0.12-0.18) oznacza, że spośród 5 zwróconych fragmentów tylko mniej więcej jeden jest faktycznie istotny dla wygenerowania odpowiedzi.
 
@@ -220,7 +220,7 @@ Wyniki dla konfiguracji bez kompresji są spójne z głównymi wynikami eksperym
 
 Eksperyment polegał na zmuszeniu pipeline'u do wygenerowania odpowiedzi przy kontekście z kluczowym fragmentem ułożonym w określonym miejscu listy 10 pobranych fragmentów. Sprawdzono trzy metody mitygacji: brak mitygacji, reranking U-shape oraz kompresję BriefContext. Tabela poniżej zawiera średnią completeness uśrednioną po trzech pytaniach (S1, S2, L3) dla każdej kombinacji metody i pozycji.
 
-| Mitigation     | pos=1 | pos=3 | pos=5 | pos=7 | pos=10 | średnia |
+| Mitygacja      | pos=1 | pos=3 | pos=5 | pos=7 | pos=10 | średnia |
 |----------------|-------|-------|-------|-------|--------|---------|
 | brak           | 3.00  | 3.00  | 3.00  | 3.00  | 4.33   | 3.27    |
 | u_shape        | 3.00  | 3.67  | 3.67  | 4.33  | 3.67   | 3.67    |
@@ -302,7 +302,7 @@ ANTHROPIC_API_KEY=
 Klucz API oraz URL do Qdrant należy pobrać z panelu Qdrant Cloud po utworzeniu własnego klastra. Do pola `QDRANT_URL` należy wkleić adres API klastra. Klucz Groq pobiera się z panelu Groq Console, w sekcji z kluczami API użytkownika. Jeśli używany ma być inny dostawca modelu, należy uzupełnić odpowiednie pole `*_API_KEY` i ustawić `LLM_PROVIDER` zgodnie z wybranym dostawcą modelu.
 
 #### 4. Utworzenie bazy wektorowej Qdrant
-Po zebraniu dokumentów trzeba zbudować indeks wektorowy. W tym celu uruchamia się pipeline ingestii, który wczytuje PDF-y, czyści treść, dzieli dokumenty na fragmenty i zapisuje je do Qdrant:
+Po zebraniu dokumentów trzeba zbudować indeks wektorowy. W tym celu uruchamia się pipeline, który wczytuje PDF-y, czyści treść, dzieli dokumenty na fragmenty i zapisuje je do Qdrant:
 
 ```bash
 python -m ingestion.pipeline --strategy structure --recreate
