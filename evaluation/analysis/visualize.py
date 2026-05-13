@@ -320,6 +320,8 @@ def plot_summary_table(agg: dict) -> None:
     tbl.set_fontsize(10)
     tbl.scale(1, 1.6)
 
+    tbl.auto_set_column_width(list(range(len(headers))))
+
     for j in range(len(headers)):
         tbl[(0, j)].set_facecolor("#1a2038")
         tbl[(0, j)].set_text_props(color="white", weight="bold")
